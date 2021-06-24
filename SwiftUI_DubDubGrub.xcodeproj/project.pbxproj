@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EC0A7D142684A9C200553858 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A7D132684A9C200553858 /* CloudKit.framework */; };
+		EC0A7D162684AD4B00553858 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A7D152684AD4B00553858 /* Color+Ext.swift */; };
 		ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */; };
 		ECE875E9267F6EF1000CEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E8267F6EF1000CEA5E /* ContentView.swift */; };
 		ECE875EB267F6EF4000CEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875EA267F6EF4000CEA5E /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* Begin PBXFileReference section */
 		EC0A7D112684A9B900553858 /* SwiftUI_DubDubGrub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUI_DubDubGrub.entitlements; sourceTree = "<group>"; };
 		EC0A7D132684A9C200553858 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		EC0A7D152684AD4B00553858 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		ECE875E3267F6EF1000CEA5E /* SwiftUI_DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DubDubGrubApp.swift; sourceTree = "<group>"; };
 		ECE875E8267F6EF1000CEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				ECE875EA267F6EF4000CEA5E /* Assets.xcassets */,
 				ECE875EF267F6EF4000CEA5E /* Info.plist */,
 				ECE875EC267F6EF4000CEA5E /* Preview Content */,
+				EC0A7D152684AD4B00553858 /* Color+Ext.swift */,
 			);
 			path = SwiftUI_DubDubGrub;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			files = (
 				ECE875E9267F6EF1000CEA5E /* ContentView.swift in Sources */,
 				ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */,
+				EC0A7D162684AD4B00553858 /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
