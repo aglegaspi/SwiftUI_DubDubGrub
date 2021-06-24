@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0A7D142684A9C200553858 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A7D132684A9C200553858 /* CloudKit.framework */; };
 		ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */; };
 		ECE875E9267F6EF1000CEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E8267F6EF1000CEA5E /* ContentView.swift */; };
 		ECE875EB267F6EF4000CEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875EA267F6EF4000CEA5E /* Assets.xcassets */; };
@@ -14,6 +15,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC0A7D112684A9B900553858 /* SwiftUI_DubDubGrub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUI_DubDubGrub.entitlements; sourceTree = "<group>"; };
+		EC0A7D132684A9C200553858 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		ECE875E3267F6EF1000CEA5E /* SwiftUI_DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DubDubGrubApp.swift; sourceTree = "<group>"; };
 		ECE875E8267F6EF1000CEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,17 +30,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC0A7D142684A9C200553858 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC0A7D122684A9C200553858 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A7D132684A9C200553858 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ECE875DA267F6EF1000CEA5E = {
 			isa = PBXGroup;
 			children = (
 				ECE875E5267F6EF1000CEA5E /* SwiftUI_DubDubGrub */,
 				ECE875E4267F6EF1000CEA5E /* Products */,
+				EC0A7D122684A9C200553858 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +65,7 @@
 		ECE875E5267F6EF1000CEA5E /* SwiftUI_DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				EC0A7D112684A9B900553858 /* SwiftUI_DubDubGrub.entitlements */,
 				ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */,
 				ECE875E8267F6EF1000CEA5E /* ContentView.swift */,
 				ECE875EA267F6EF4000CEA5E /* Assets.xcassets */,
@@ -267,6 +281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwiftUI_DubDubGrub/SwiftUI_DubDubGrub.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI_DubDubGrub/Preview Content\"";
 				DEVELOPMENT_TEAM = 7QAYF98LA4;
@@ -289,6 +304,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwiftUI_DubDubGrub/SwiftUI_DubDubGrub.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI_DubDubGrub/Preview Content\"";
 				DEVELOPMENT_TEAM = 7QAYF98LA4;
