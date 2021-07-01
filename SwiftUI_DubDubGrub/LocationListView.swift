@@ -29,7 +29,7 @@ struct LocationListView: View {
                             
                             HStack {
                                 ForEach(0..<5) { item in
-                                    AvatarView()
+                                    AvatarView(size: 35)
                                 }
                             }
                         } //VStack
@@ -50,11 +50,14 @@ struct LocationListView_Previews: PreviewProvider {
 }
 
 struct AvatarView: View {
+    
+    var size: CGFloat
+    
     var body: some View {
         Image("default-avatar")
             .resizable()
             .scaledToFit()
-            .frame(width: 35, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: size, height: size, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .clipShape(Circle())
     }
 }
