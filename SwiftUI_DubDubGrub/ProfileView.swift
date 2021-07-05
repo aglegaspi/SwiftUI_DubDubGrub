@@ -57,20 +57,20 @@ struct ProfileView: View {
                 Text("Bio: ")
                     .font(.callout)
                     .foregroundColor(.secondary)
-                +
+                    +
                     Text("\(100 - bio.count)")
                     .bold()
-                        .font(.callout)
+                    .font(.callout)
                     .foregroundColor(bio.count <= 100 ? .brandPrimary : Color(.systemPink))
-                +
+                    +
                     Text(" characters remain")
-                        .font(.callout)
-                        .foregroundColor(.secondary)
+                    .font(.callout)
+                    .foregroundColor(.secondary)
                 
                 TextEditor(text: $bio)
                     .frame(height: 100)
                     .padding()
-                
+                    
                     .overlay(RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.secondary,lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
             }
