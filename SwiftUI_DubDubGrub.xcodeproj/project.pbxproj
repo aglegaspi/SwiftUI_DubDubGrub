@@ -65,6 +65,55 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ECCE7CE926947EE10088E52D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A7D152684AD4B00553858 /* Color+Ext.swift */,
+				ECCE7CE526947BE20088E52D /* View+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ECCE7CEA26947EF40088E52D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ECCE7CE326947B930088E52D /* CustomModifiers.swift */,
+				ECCE7CED26947F3D0088E52D /* CustomViews */,
+				ECCE7CEC26947F330088E52D /* Cells */,
+				ECCE7CEB26947EFC0088E52D /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ECCE7CEB26947EFC0088E52D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
+				EC8E6A06268BD91000492B3D /* LocationDetailView.swift */,
+				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
+				EC0A7D1B2684AE2A00553858 /* LocationMapView.swift */,
+				EC0A7D212684AE5C00553858 /* ProfileView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		ECCE7CEC26947F330088E52D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		ECCE7CED26947F3D0088E52D /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				ECCE7CE1269477240088E52D /* AvatarView.swift */,
+				ECCE7CE726947CC90088E52D /* DDGButton.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		ECE875DA267F6EF1000CEA5E = {
 			isa = PBXGroup;
 			children = (
@@ -85,22 +134,13 @@
 		ECE875E5267F6EF1000CEA5E /* SwiftUI_DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				ECCE7CEA26947EF40088E52D /* Views */,
+				ECCE7CE926947EE10088E52D /* Extensions */,
 				EC0A7D112684A9B900553858 /* SwiftUI_DubDubGrub.entitlements */,
 				ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */,
 				ECE875EA267F6EF4000CEA5E /* Assets.xcassets */,
 				ECE875EF267F6EF4000CEA5E /* Info.plist */,
 				ECE875EC267F6EF4000CEA5E /* Preview Content */,
-				EC0A7D152684AD4B00553858 /* Color+Ext.swift */,
-				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
-				EC0A7D1B2684AE2A00553858 /* LocationMapView.swift */,
-				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
-				EC8E6A06268BD91000492B3D /* LocationDetailView.swift */,
-				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
-				ECCE7CE1269477240088E52D /* AvatarView.swift */,
-				EC0A7D212684AE5C00553858 /* ProfileView.swift */,
-				ECCE7CE726947CC90088E52D /* DDGButton.swift */,
-				ECCE7CE326947B930088E52D /* CustomModifiers.swift */,
-				ECCE7CE526947BE20088E52D /* View+Ext.swift */,
 			);
 			path = SwiftUI_DubDubGrub;
 			sourceTree = "<group>";
