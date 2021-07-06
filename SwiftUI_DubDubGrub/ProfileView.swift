@@ -43,18 +43,7 @@ struct ProfileView: View {
             }
             
             VStack(alignment: .leading) {
-                Text("Bio: ")
-                    .font(.callout)
-                    .foregroundColor(.secondary)
-                    +
-                    Text("\(100 - bio.count)")
-                    .bold()
-                    .font(.callout)
-                    .foregroundColor(bio.count <= 100 ? .brandPrimary : Color(.systemPink))
-                    +
-                    Text(" characters remain")
-                    .font(.callout)
-                    .foregroundColor(.secondary)
+                CharactersRemainView(currentCount: bio.count)
                 
                 TextEditor(text: $bio)
                     .frame(height: 100)
@@ -70,12 +59,7 @@ struct ProfileView: View {
             Button {
                 
             } label: {
-                Text("Create Profile")
-                    .bold()
-                    .frame(width: 280, height: 44)
-                    .background(Color.brandPrimary)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                DDGButton(title: "Create Profile")
             }
         }
         .navigationTitle("Profile")
@@ -90,20 +74,6 @@ struct ProfileView_Previews: PreviewProvider {
     }
 }
 
-struct ProfileNameText: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.system(size: 32, weight: .bold))
-            .lineLimit(1)
-            .minimumScaleFactor(0.75)
-    }
-}
-
-extension View {
-    func profileNameStyle() -> some View {
-        self.modifier(ProfileNameText())
-    }
-}
 
 struct NameBackgroundView: View {
     var body: some View {
@@ -122,5 +92,25 @@ struct EditImage: View {
             .frame(width: 20, height: 20)
             .foregroundColor(.black)
             .offset(x: 30, y: 32)
+    }
+}
+
+struct CharactersRemainView: View {
+    
+    var currentCount: Int
+    
+    var body: some View {
+        Text("Bio: ")
+            .font(.callout)
+            .foregroundColor(.secondary)
+            +
+            Text("\(100 - currentCount)")
+            .bold()
+            .font(.callout)
+            .foregroundColor(currentCount <= 100 ? .brandPrimary : Color(.systemPink))
+            +
+            Text(" characters remain")
+            .font(.callout)
+            .foregroundColor(.secondary)
     }
 }

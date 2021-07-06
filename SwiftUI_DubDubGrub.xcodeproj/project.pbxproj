@@ -16,6 +16,9 @@
 		EC8E6A07268BD91000492B3D /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8E6A06268BD91000492B3D /* LocationDetailView.swift */; };
 		ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CDF269476B60088E52D /* LocationCell.swift */; };
 		ECCE7CE2269477240088E52D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CE1269477240088E52D /* AvatarView.swift */; };
+		ECCE7CE426947B930088E52D /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CE326947B930088E52D /* CustomModifiers.swift */; };
+		ECCE7CE626947BE20088E52D /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CE526947BE20088E52D /* View+Ext.swift */; };
+		ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CE726947CC90088E52D /* DDGButton.swift */; };
 		ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */; };
 		ECE875EB267F6EF4000CEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875EA267F6EF4000CEA5E /* Assets.xcassets */; };
 		ECE875EE267F6EF4000CEA5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */; };
@@ -32,6 +35,9 @@
 		EC8E6A06268BD91000492B3D /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		ECCE7CDF269476B60088E52D /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		ECCE7CE1269477240088E52D /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		ECCE7CE326947B930088E52D /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
+		ECCE7CE526947BE20088E52D /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		ECCE7CE726947CC90088E52D /* DDGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGButton.swift; sourceTree = "<group>"; };
 		ECE875E3267F6EF1000CEA5E /* SwiftUI_DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DubDubGrubApp.swift; sourceTree = "<group>"; };
 		ECE875EA267F6EF4000CEA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +98,9 @@
 				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
 				ECCE7CE1269477240088E52D /* AvatarView.swift */,
 				EC0A7D212684AE5C00553858 /* ProfileView.swift */,
+				ECCE7CE726947CC90088E52D /* DDGButton.swift */,
+				ECCE7CE326947B930088E52D /* CustomModifiers.swift */,
+				ECCE7CE526947BE20088E52D /* View+Ext.swift */,
 			);
 			path = SwiftUI_DubDubGrub;
 			sourceTree = "<group>";
@@ -174,12 +183,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */,
+				ECCE7CE426947B930088E52D /* CustomModifiers.swift in Sources */,
 				EC0A7D1C2684AE2A00553858 /* LocationMapView.swift in Sources */,
 				EC0A7D1F2684AE4900553858 /* LocationListView.swift in Sources */,
 				EC8E6A07268BD91000492B3D /* LocationDetailView.swift in Sources */,
 				EC0A7D192684ADEF00553858 /* AppTabView.swift in Sources */,
 				EC0A7D222684AE5C00553858 /* ProfileView.swift in Sources */,
+				ECCE7CE626947BE20088E52D /* View+Ext.swift in Sources */,
 				ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */,
+				ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */,
 				ECCE7CE2269477240088E52D /* AvatarView.swift in Sources */,
 				EC0A7D162684AD4B00553858 /* Color+Ext.swift in Sources */,
 			);
