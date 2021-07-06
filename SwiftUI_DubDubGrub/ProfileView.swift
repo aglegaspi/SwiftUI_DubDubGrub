@@ -17,33 +17,22 @@ struct ProfileView: View {
     var body: some View {
         VStack {
             ZStack {
-                Color(.secondarySystemBackground)
-                    .frame(height: 130)
-                    .cornerRadius(12)
-                    .padding(.horizontal)
+                NameBackgroundView()
                 
                 HStack(spacing: 16) {
                     ZStack {
                         AvatarView(size: 84)
                             .padding(.leading,12)
-                        Image(systemName: "square.and.pencil")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.black)
-                            .offset(x: 30, y: 32)
+                        
+                        EditImage()
                     }
                     
                     VStack(spacing: 1) {
                         TextField("First Name", text: $firstName)
-                            .font(.system(size: 32, weight: .bold))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.75)
+                            .profileNameStyle()
                         
                         TextField("Last Name", text: $lastName)
-                            .font(.system(size: 32, weight: .bold))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.75)
+                            .profileNameStyle()
                         
                         TextField("Company Name", text: $companyName)
                         
@@ -98,5 +87,40 @@ struct ProfileView_Previews: PreviewProvider {
         NavigationView {
             ProfileView()
         }
+    }
+}
+
+struct ProfileNameText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 32, weight: .bold))
+            .lineLimit(1)
+            .minimumScaleFactor(0.75)
+    }
+}
+
+extension View {
+    func profileNameStyle() -> some View {
+        self.modifier(ProfileNameText())
+    }
+}
+
+struct NameBackgroundView: View {
+    var body: some View {
+        Color(.secondarySystemBackground)
+            .frame(height: 130)
+            .cornerRadius(12)
+            .padding(.horizontal)
+    }
+}
+
+struct EditImage: View {
+    var body: some View {
+        Image(systemName: "square.and.pencil")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 20, height: 20)
+            .foregroundColor(.black)
+            .offset(x: 30, y: 32)
     }
 }
