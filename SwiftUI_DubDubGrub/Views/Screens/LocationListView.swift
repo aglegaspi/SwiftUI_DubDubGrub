@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct LocationListView: View {
+    
+    @State private var locations: [DDGLocation] = [DDGLocation.init(record: MockData.location)]
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(0..<10) { item in
+                ForEach(locations, id: \.ckRecordID) { item in
                     NavigationLink(destination: LocationDetailView()) {
                         LocationCell()
                         }
