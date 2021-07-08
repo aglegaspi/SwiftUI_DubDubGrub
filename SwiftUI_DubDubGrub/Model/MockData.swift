@@ -13,7 +13,7 @@ struct MockData {
         let record = CKRecord(recordType: "DDGLocation")
         record[DDGLocation.kName]           = "Alxndr's Bar and Grill"
         record[DDGLocation.kAddress]        = "123 Developer Way"
-        record[DDGLocation.kDescription]    = "You are a Porfessional iOS Developer"
+        record[DDGLocation.kDescription]    = "You are a Professional iOS Developer"
         record[DDGLocation.kWebsiteURL]     = "http://www.dribbble.com"
         record[DDGLocation.kLocation]       = CLLocation(latitude: 37.33156, longitude: -121.891054)
         record[DDGLocation.kPhoneNumber]    = "347-903-1847"
