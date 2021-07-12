@@ -12,7 +12,8 @@ struct CloudKitManager {
     
     static func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
         let sortDescriptor = NSSortDescriptor(key: DDGLocation.kName, ascending: true)
-        // query the record type and give me all the locations
+        
+        // query the record type "location" and give me all the locations
         let query = CKQuery(recordType: RecordType.location, predicate: NSPredicate(value: true))
         query.sortDescriptors = [sortDescriptor]
         
@@ -27,7 +28,11 @@ struct CloudKitManager {
             
             var locations: [DDGLocation] = []
             
+            records.forEach { record in
+                locations.append(DDGLocation(record: record))
+            }
             
+            completed(.success(locations))
             
         }
     }
