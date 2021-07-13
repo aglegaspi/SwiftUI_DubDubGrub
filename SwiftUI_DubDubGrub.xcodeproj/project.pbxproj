@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC028AC0269E4CA600C33CCD /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC028ABF269E4CA600C33CCD /* AlertItem.swift */; };
 		EC0A7D142684A9C200553858 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A7D132684A9C200553858 /* CloudKit.framework */; };
 		EC0A7D162684AD4B00553858 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A7D152684AD4B00553858 /* Color+Ext.swift */; };
 		EC0A7D192684ADEF00553858 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A7D182684ADEF00553858 /* AppTabView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC028ABF269E4CA600C33CCD /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		EC0A7D112684A9B900553858 /* SwiftUI_DubDubGrub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUI_DubDubGrub.entitlements; sourceTree = "<group>"; };
 		EC0A7D132684A9C200553858 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		EC0A7D152684AD4B00553858 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				ECE3B6CF269C830C00A601A9 /* CloudKitManager.swift */,
 				ECE3B6D1269C842900A601A9 /* Constants.swift */,
+				EC028ABF269E4CA600C33CCD /* AlertItem.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				EC0A7D1F2684AE4900553858 /* LocationListView.swift in Sources */,
 				EC872B682697B41000B876DD /* MockData.swift in Sources */,
 				EC8E6A07268BD91000492B3D /* LocationDetailView.swift in Sources */,
+				EC028AC0269E4CA600C33CCD /* AlertItem.swift in Sources */,
 				EC872B662697B1D500B876DD /* DDGProfile.swift in Sources */,
 				EC872B642697AAA200B876DD /* DDGLocation.swift in Sources */,
 				EC0A7D192684ADEF00553858 /* AppTabView.swift in Sources */,
