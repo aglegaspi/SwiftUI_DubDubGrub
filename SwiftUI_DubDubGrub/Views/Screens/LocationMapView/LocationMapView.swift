@@ -10,12 +10,17 @@ import MapKit
 
 struct LocationMapView: View {
     
+    @EnvironmentObject private var locationManager: LocationManager
     @StateObject private var viewModel = LocationMapViewModel()
     
     var body: some View {
         
         ZStack {
-            Map(coordinateRegion: $viewModel.region).ignoresSafeArea()
+            // Map takes in a parameter of a region, an array of annotion item (locations), then it's going to iterate through those locations, then drop a map pin at the coordinate, and make it the color provided.
+            Map(coordinateRegion: $viewModel.region, annotationItems: locationManager.locations, annotationContent: { location in
+                MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
+            })
+                .ignoresSafeArea()
             
             VStack {
                 LogoView().shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
@@ -28,7 +33,9 @@ struct LocationMapView: View {
                   dismissButton: alertItem.dissmissButton)
         })
         .onAppear {
-            viewModel.getLocations()
+            if locationManager.locations.isEmpty {
+                viewModel.getLocations(for: locationManager)
+            }
         }
         
     }

@@ -15,16 +15,17 @@ final class LocationMapViewModel: ObservableObject {
                                                                               longitude: -121.891054),
                                                //How much to zoom in
                                                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-    @Published var locations: [DDGLocation] = []
     
-    func getLocations() {
+    func getLocations(for locationManager: LocationManager) {
         CloudKitManager.getLocations { result in
-            switch result {
+            // update UI on the main thread. Each update triggers an update on the UI
+            DispatchQueue.main.async {
+                switch result {
             case .success(let locations):
-                print(locations)
+                locationManager.locations = locations
             case .failure(_):
                 self.alertItem = AlertContext.unableToGetLocations
-            }
+            }}
         }
     }
     

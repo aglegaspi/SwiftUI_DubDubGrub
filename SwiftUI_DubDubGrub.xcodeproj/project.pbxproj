@@ -26,6 +26,7 @@
 		ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CE726947CC90088E52D /* DDGButton.swift */; };
 		ECE3B6D0269C830C00A601A9 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3B6CF269C830C00A601A9 /* CloudKitManager.swift */; };
 		ECE3B6D2269C842900A601A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3B6D1269C842900A601A9 /* Constants.swift */; };
+		ECE8753A26DFE442006ECB70 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8753926DFE442006ECB70 /* LocationManager.swift */; };
 		ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */; };
 		ECE875EB267F6EF4000CEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875EA267F6EF4000CEA5E /* Assets.xcassets */; };
 		ECE875EE267F6EF4000CEA5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		ECCE7CE726947CC90088E52D /* DDGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGButton.swift; sourceTree = "<group>"; };
 		ECE3B6CF269C830C00A601A9 /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		ECE3B6D1269C842900A601A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ECE8753926DFE442006ECB70 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ECE875E3267F6EF1000CEA5E /* SwiftUI_DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DubDubGrubApp.swift; sourceTree = "<group>"; };
 		ECE875EA267F6EF4000CEA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,11 +152,19 @@
 		ECE3B6CE269C82E700A601A9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				ECE3B6CF269C830C00A601A9 /* CloudKitManager.swift */,
 				ECE3B6D1269C842900A601A9 /* Constants.swift */,
 				EC028ABF269E4CA600C33CCD /* AlertItem.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ECE8753826DFE3F8006ECB70 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				ECE3B6CF269C830C00A601A9 /* CloudKitManager.swift */,
+				ECE8753926DFE442006ECB70 /* LocationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		ECE875DA267F6EF1000CEA5E = {
@@ -177,6 +187,7 @@
 		ECE875E5267F6EF1000CEA5E /* SwiftUI_DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				ECE8753826DFE3F8006ECB70 /* Managers */,
 				ECE3B6CE269C82E700A601A9 /* Utilities */,
 				EC872B622697AA8B00B876DD /* Model */,
 				ECCE7CEA26947EF40088E52D /* Views */,
@@ -279,6 +290,7 @@
 				EC872B642697AAA200B876DD /* DDGLocation.swift in Sources */,
 				EC0A7D192684ADEF00553858 /* AppTabView.swift in Sources */,
 				EC0A7D222684AE5C00553858 /* ProfileView.swift in Sources */,
+				ECE8753A26DFE442006ECB70 /* LocationManager.swift in Sources */,
 				EC56884F26AF013200501476 /* LocationMapViewModel.swift in Sources */,
 				ECE3B6D0269C830C00A601A9 /* CloudKitManager.swift in Sources */,
 				ECCE7CE626947BE20088E52D /* View+Ext.swift in Sources */,

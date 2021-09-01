@@ -10,6 +10,7 @@ import SwiftUI
 struct AppTabView: View {
     var body: some View {
         TabView {
+            
             LocationMapView()
                 .tabItem { Label("Map", systemImage: "map") }
             
@@ -18,6 +19,7 @@ struct AppTabView: View {
             
             NavigationView {
                 ProfileView()
+                
             }
             .tabItem { Label("Profile", systemImage: "person") }
         }
