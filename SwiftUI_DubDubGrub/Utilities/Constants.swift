@@ -22,6 +22,12 @@ enum ImageDimension {
     case square, banner
     
     func getPlaceholder(for dimension: ImageDimension) -> UIImage {
-        return dimension == .square ? PlaceholderImage.square : PlaceholderImage.banner
+        switch dimension {
+        
+        case .square:
+            return PlaceholderImage.square
+        case .banner:
+            return PlaceholderImage.banner
+        }
     }
 }
