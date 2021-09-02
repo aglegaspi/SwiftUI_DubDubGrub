@@ -6,6 +6,7 @@
 //
 
 import CloudKit
+import UIKit
 
 struct DDGLocation: Identifiable {
     
@@ -38,6 +39,11 @@ struct DDGLocation: Identifiable {
         location    = record[DDGLocation.kLocation] as? CLLocation ?? CLLocation(latitude: 0, longitude: 0)
         websiteURL  = record[DDGLocation.kWebsiteURL] as? String ?? "http://apple.com"
         phoneNumber = record[DDGLocation.kPhoneNumber] as? String ?? "N/A"
+    }
+    
+    func createSquareImage() -> UIImage {
+        guard let asset = squareAsset else { return PlaceholderImage.square }
+        return asset.convertToUIImage(in: .square)
     }
 }
 
