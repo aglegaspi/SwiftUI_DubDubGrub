@@ -15,7 +15,7 @@ struct AppTabView: View {
                 .tabItem { Label("Map", systemImage: "map") }
             
             LocationListView()
-                .tabItem { Label("Map", systemImage: "building") }
+                .tabItem { Label("Locations", systemImage: "building") }
             
             NavigationView {
                 ProfileView()
