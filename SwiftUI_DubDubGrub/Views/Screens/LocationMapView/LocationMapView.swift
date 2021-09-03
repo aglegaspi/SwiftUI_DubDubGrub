@@ -17,9 +17,9 @@ struct LocationMapView: View {
         
         ZStack {
             // Map takes in a parameter of a region, an array of annotion item (locations), then it's going to iterate through those locations, then drop a map pin at the coordinate, and make it the color provided.
-            Map(coordinateRegion: $viewModel.region, annotationItems: locationManager.locations, annotationContent: { location in
+            Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
-            })
+            }
                 .ignoresSafeArea()
             
             VStack {

@@ -51,5 +51,3 @@ struct DDGLocation: Identifiable {
         return asset.convertToUIImage(in: .banner)
     }
 }
-
-
