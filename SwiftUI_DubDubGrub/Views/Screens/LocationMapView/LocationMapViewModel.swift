@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-final class LocationMapViewModel: ObservableObject {
+final class LocationMapViewModel: NSObject, ObservableObject {
     
     @Published var alertItem: AlertItem?
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516,
@@ -23,6 +23,9 @@ final class LocationMapViewModel: ObservableObject {
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
             deviceLocationManager = CLLocationManager()
+            
+            // force unwrapped because the instance is created at this point
+            deviceLocationManager!.delegate = self
         } else {
             alertItem = AlertContext.locationDisabled
         }
@@ -62,4 +65,11 @@ final class LocationMapViewModel: ObservableObject {
         }
     }
     
+}
+
+// MARK: - Extensions
+extension LocationMapViewModel: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+    }
 }
