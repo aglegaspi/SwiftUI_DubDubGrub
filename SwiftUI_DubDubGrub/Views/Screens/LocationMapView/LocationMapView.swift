@@ -20,10 +20,12 @@ struct LocationMapView: View {
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
             }
-                .ignoresSafeArea()
+            .accentColor(.grubRed)
+            .ignoresSafeArea()
             
             VStack {
-                LogoView().shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                LogoView(frameWidth: 125)
+                    .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 Spacer()
             }
         }
@@ -49,12 +51,4 @@ struct LocationMapView_Previews: PreviewProvider {
     }
 }
 
-struct LogoView: View {
-    var body: some View {
-        Image("ddg-map-logo")
-            .resizable()
-            .scaledToFit()
-            .frame(height: 70)
-            
-    }
-}
+
