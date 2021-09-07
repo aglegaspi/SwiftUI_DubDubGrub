@@ -16,6 +16,16 @@ final class LocationMapViewModel: ObservableObject {
                                                //How much to zoom in
                                                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
+    // create this instance if Location Services are available
+    var deviceLocationManager: CLLocationManager?
+    
+    // check if Location Services are enable and create the instance
+    func checkIfLocationServicesIsEnabled() {
+        if CLLocationManager.locationServicesEnabled() {
+            deviceLocationManager = CLLocationManager()
+        }
+    }
+    
     func getLocations(for locationManager: LocationManager) {
         CloudKitManager.getLocations { result in
             // update UI on the main thread. Each update triggers an update on the UI
