@@ -26,6 +26,27 @@ final class LocationMapViewModel: ObservableObject {
         }
     }
     
+    // check for app specific permission
+    func checkLocationAuthorization() {
+        guard let deviceLocationManager = deviceLocationManager else { return }
+        
+        switch deviceLocationManager.authorizationStatus {
+        
+        case .notDetermined:
+            deviceLocationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // show alert
+            return
+        case .denied:
+            // show alert
+            return
+        case .authorizedAlways, .authorizedWhenInUse:
+            break
+        @unknown default:
+            break
+        }
+    }
+    
     func getLocations(for locationManager: LocationManager) {
         CloudKitManager.getLocations { result in
             // update UI on the main thread. Each update triggers an update on the UI
