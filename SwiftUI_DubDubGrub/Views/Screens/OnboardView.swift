@@ -20,6 +20,7 @@ struct OnboardView: View {
                 } label: {
                     XDismissButton()
                 }
+                .padding()
             }
             Spacer()
             
