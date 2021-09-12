@@ -17,6 +17,7 @@
 		EC5585DA26E7D6F400951D70 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5585D926E7D6F400951D70 /* OnboardView.swift */; };
 		EC5585DC26E7D76A00951D70 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5585DB26E7D76A00951D70 /* LogoView.swift */; };
 		EC56884F26AF013200501476 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56884E26AF013200501476 /* LocationMapViewModel.swift */; };
+		EC584D4426EDCA0000878757 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC584D4326EDCA0000878757 /* XDismissButton.swift */; };
 		EC872B642697AAA200B876DD /* DDGLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B632697AAA200B876DD /* DDGLocation.swift */; };
 		EC872B662697B1D500B876DD /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B652697B1D500B876DD /* DDGProfile.swift */; };
 		EC872B682697B41000B876DD /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B672697B41000B876DD /* MockData.swift */; };
@@ -47,6 +48,7 @@
 		EC5585D926E7D6F400951D70 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 		EC5585DB26E7D76A00951D70 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		EC56884E26AF013200501476 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
+		EC584D4326EDCA0000878757 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		EC872B632697AAA200B876DD /* DDGLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGLocation.swift; sourceTree = "<group>"; };
 		EC872B652697B1D500B876DD /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
 		EC872B672697B41000B876DD /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -94,6 +96,15 @@
 				EC56884E26AF013200501476 /* LocationMapViewModel.swift */,
 			);
 			path = LocationMapView;
+			sourceTree = "<group>";
+		};
+		EC584D4226EDC9E200878757 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				EC584D4326EDCA0000878757 /* XDismissButton.swift */,
+				ECCE7CE726947CC90088E52D /* DDGButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		EC872B622697AA8B00B876DD /* Model */ = {
@@ -151,8 +162,8 @@
 		ECCE7CED26947F3D0088E52D /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				EC584D4226EDC9E200878757 /* Buttons */,
 				ECCE7CE1269477240088E52D /* AvatarView.swift */,
-				ECCE7CE726947CC90088E52D /* DDGButton.swift */,
 				EC5585DB26E7D76A00951D70 /* LogoView.swift */,
 			);
 			path = CustomViews;
@@ -310,6 +321,7 @@
 				ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */,
 				ECCE7CE2269477240088E52D /* AvatarView.swift in Sources */,
 				EC0A7D162684AD4B00553858 /* Color+Ext.swift in Sources */,
+				EC584D4426EDCA0000878757 /* XDismissButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

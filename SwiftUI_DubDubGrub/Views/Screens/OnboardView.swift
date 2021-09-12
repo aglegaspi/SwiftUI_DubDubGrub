@@ -10,6 +10,16 @@ import SwiftUI
 struct OnboardView: View {
     var body: some View {
         VStack {
+            HStack{
+                Spacer()
+                Button {
+                    
+                } label: {
+                    XDismissButton()
+                }
+            }
+            Spacer()
+            
             LogoView(frameWidth: 250)
                 .padding(.bottom)
             
@@ -25,6 +35,8 @@ struct OnboardView: View {
                                 description: "See where other iOS Devs are and join the party")
             }
             .padding(.horizontal, 40)
+            
+            Spacer()
         }
     }
 }
