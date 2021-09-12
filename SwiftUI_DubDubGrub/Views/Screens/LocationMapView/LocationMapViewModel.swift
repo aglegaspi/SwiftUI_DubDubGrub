@@ -10,6 +10,7 @@ import MapKit
 
 final class LocationMapViewModel: NSObject, ObservableObject {
     
+    @Published var isShowingOnboardView = true
     @Published var alertItem: AlertItem?
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516,
                                                                               longitude: -121.891054),
