@@ -30,7 +30,7 @@ struct LocationMapView: View {
             }
         }
         .sheet(isPresented: $viewModel.isShowingOnboardView, content: {
-            OnboardView()
+            OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView)
         })
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
