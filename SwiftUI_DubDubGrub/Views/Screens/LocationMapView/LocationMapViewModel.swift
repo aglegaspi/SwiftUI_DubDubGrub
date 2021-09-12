@@ -10,7 +10,7 @@ import MapKit
 
 final class LocationMapViewModel: NSObject, ObservableObject {
     
-    @Published var isShowingOnboardView = true
+    @Published var isShowingOnboardView = false
     @Published var alertItem: AlertItem?
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516,
                                                                               longitude: -121.891054),
@@ -19,12 +19,22 @@ final class LocationMapViewModel: NSObject, ObservableObject {
     
     // create this instance if Location Services are available
     var deviceLocationManager: CLLocationManager?
+    // constant for userdefault key
     var kHasSeenOnboardView = "hasSeenOnboardView"
-    
+    // computed property for onboardview
     var hasSeenOnboardView: Bool {
         return UserDefaults.standard.bool(forKey: kHasSeenOnboardView)
     }
     
+    //checks if the user's seen onboarding screen. false - load view. true - check location services.
+    func runStartupChecks() {
+        if !hasSeenOnboardView {
+            isShowingOnboardView = true
+            UserDefaults.standard.setValue(true, forKey: kHasSeenOnboardView)
+        } else {
+            checkIfLocationServicesIsEnabled()
+        }
+    }
     
     // check if Location Services are enable and create the instance
     func checkIfLocationServicesIsEnabled() {
