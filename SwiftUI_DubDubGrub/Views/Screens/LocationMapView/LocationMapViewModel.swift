@@ -19,6 +19,12 @@ final class LocationMapViewModel: NSObject, ObservableObject {
     
     // create this instance if Location Services are available
     var deviceLocationManager: CLLocationManager?
+    var kHasSeenOnboardView = "hasSeenOnboardView"
+    
+    var hasSeenOnboardView: Bool {
+        return UserDefaults.standard.bool(forKey: kHasSeenOnboardView)
+    }
+    
     
     // check if Location Services are enable and create the instance
     func checkIfLocationServicesIsEnabled() {
