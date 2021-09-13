@@ -22,7 +22,7 @@ struct ProfileView: View {
                 
                 HStack(spacing: 16) {
                     ZStack {
-                        AvatarView(size: 84)
+                        AvatarView(image: PlaceholderImage.avatar, size: 84)
                             .padding(.leading,12)
                         
                         EditImage()

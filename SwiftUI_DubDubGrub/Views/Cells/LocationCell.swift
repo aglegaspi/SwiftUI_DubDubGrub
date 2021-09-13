@@ -29,7 +29,7 @@ struct LocationCell: View {
                 
                 HStack {
                     ForEach(0..<5) { item in
-                        AvatarView(size: 35)
+                        AvatarView(image: PlaceholderImage.avatar, size: 35)
                     }
                 }
             } //VStack
