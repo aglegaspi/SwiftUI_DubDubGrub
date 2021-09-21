@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
     
+    @Binding var image: UIImage
+    
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator // context is UIViewControllerRepresentable
@@ -33,7 +35,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            // code
+            // we get the image here and
         }
     }
 }
