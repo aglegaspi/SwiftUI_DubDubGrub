@@ -43,6 +43,8 @@ struct PhotoPicker: UIViewControllerRepresentable {
                 photoPicker.image = UIImage(data: compressedImageData)!
                 
             }
+            
+            picker.dismiss(animated: true)
         }
     }
 }

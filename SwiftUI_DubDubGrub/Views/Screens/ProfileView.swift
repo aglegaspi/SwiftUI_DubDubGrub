@@ -23,8 +23,11 @@ struct ProfileView: View {
                 
                 HStack(spacing: 16) {
                     ZStack {
-                        AvatarView(image: PlaceholderImage.avatar, size: 84)
+                        AvatarView(image: avatar, size: 84)
                             .padding(.leading,12)
+                            .onTapGesture {
+                                isShowingPhotoPicker = true
+                            }
                         
                         EditImage()
                     }
