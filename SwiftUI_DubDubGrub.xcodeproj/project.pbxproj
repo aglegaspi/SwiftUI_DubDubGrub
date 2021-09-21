@@ -183,6 +183,7 @@
 		ECE3B6CE269C82E700A601A9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				ECCE7CE926947EE10088E52D /* Extensions */,
 				ECE3B6D1269C842900A601A9 /* Constants.swift */,
 				EC028ABF269E4CA600C33CCD /* AlertItem.swift */,
 			);
@@ -222,7 +223,6 @@
 				ECE3B6CE269C82E700A601A9 /* Utilities */,
 				EC872B622697AA8B00B876DD /* Model */,
 				ECCE7CEA26947EF40088E52D /* Views */,
-				ECCE7CE926947EE10088E52D /* Extensions */,
 				EC0A7D112684A9B900553858 /* SwiftUI_DubDubGrub.entitlements */,
 				ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */,
 				ECE875EA267F6EF4000CEA5E /* Assets.xcassets */,
