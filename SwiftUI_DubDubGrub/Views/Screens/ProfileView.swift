@@ -67,6 +67,7 @@ struct ProfileView: View {
             } label: {
                 DDGButton(title: "Create Profile")
             }
+            .padding(.bottom)
         }
         .navigationTitle("Profile")
         .toolbar {
