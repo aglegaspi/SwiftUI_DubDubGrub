@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var companyName  = ""
     @State private var bio          = ""
     @State private var avatar       = PlaceholderImage.avatar
+    @State private var isShowingPhotoPicker = false
     
     var body: some View {
         VStack {
@@ -64,54 +65,58 @@ struct ProfileView: View {
             }
         }
         .navigationTitle("Profile")
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ProfileView()
+        .sheet(isPresented: $isShowingPhotoPicker) {
+            // when picture is selected it'll be set to avatar
+            PhotoPicker(image: $avatar)
         }
     }
-}
-
-
-struct NameBackgroundView: View {
-    var body: some View {
-        Color(.secondarySystemBackground)
-            .frame(height: 130)
-            .cornerRadius(12)
-            .padding(.horizontal)
-    }
-}
-
-struct EditImage: View {
-    var body: some View {
-        Image(systemName: "square.and.pencil")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20)
-            .foregroundColor(.black)
-            .offset(x: 30, y: 32)
-    }
-}
-
-struct CharactersRemainView: View {
     
-    var currentCount: Int
+    struct ProfileView_Previews: PreviewProvider {
+        static var previews: some View {
+            NavigationView {
+                ProfileView()
+            }
+        }
+    }
     
-    var body: some View {
-        Text("Bio: ")
-            .font(.callout)
-            .foregroundColor(.secondary)
-            +
-            Text("\(100 - currentCount)")
-            .bold()
-            .font(.callout)
-            .foregroundColor(currentCount <= 100 ? .brandPrimary : Color(.systemPink))
-            +
-            Text(" characters remain")
-            .font(.callout)
-            .foregroundColor(.secondary)
+    
+    struct NameBackgroundView: View {
+        var body: some View {
+            Color(.secondarySystemBackground)
+                .frame(height: 130)
+                .cornerRadius(12)
+                .padding(.horizontal)
+        }
+    }
+    
+    struct EditImage: View {
+        var body: some View {
+            Image(systemName: "square.and.pencil")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+                .foregroundColor(.black)
+                .offset(x: 30, y: 32)
+        }
+    }
+    
+    struct CharactersRemainView: View {
+        
+        var currentCount: Int
+        
+        var body: some View {
+            Text("Bio: ")
+                .font(.callout)
+                .foregroundColor(.secondary)
+                +
+                Text("\(100 - currentCount)")
+                .bold()
+                .font(.callout)
+                .foregroundColor(currentCount <= 100 ? .brandPrimary : Color(.systemPink))
+                +
+                Text(" characters remain")
+                .font(.callout)
+                .foregroundColor(.secondary)
+        }
     }
 }
