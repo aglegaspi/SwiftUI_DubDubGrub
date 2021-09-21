@@ -34,8 +34,8 @@ struct AlertContext {
                                                 dissmissButton: .default(Text("OK")))
     
     //MARK: - ProfileView Errors
-    static let invalidProfile = AlertItem(title: Text("Location Services Disabled"),
-                                                message: Text("This app location services are disabled. To change that go to Settings > Privacy > Location Services"),
+    static let invalidProfile = AlertItem(title: Text("Invalid Profile"),
+                                                message: Text("All fields are required as well as a profile photo. Your bio must be < 100 characters. \n Please try again"),
                                                 dissmissButton: .default(Text("OK")))
     
 }
