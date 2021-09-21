@@ -68,6 +68,13 @@ struct ProfileView: View {
             }
         }
         .navigationTitle("Profile")
+        .toolbar {
+            Button {
+                dismissKeyboard()
+            } label: {
+                Image(systemName: "keyboard.chevron.compact.down")
+            }
+        }
         .sheet(isPresented: $isShowingPhotoPicker) {
             // when picture is selected it'll be set to avatar
             PhotoPicker(image: $avatar)
