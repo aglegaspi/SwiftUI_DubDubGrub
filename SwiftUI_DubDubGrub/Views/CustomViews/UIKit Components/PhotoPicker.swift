@@ -11,6 +11,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
+        picker.delegate = context.coordinator // context is UIViewControllerRepresentable
         picker.allowsEditing = true
         return picker
     }
@@ -18,10 +19,21 @@ struct PhotoPicker: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        // it's communicating with self
+        Coordinator(photoPicker: self)
     }
     
+    // communicates from UIKit to SwiftUI
     final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         
+        let photoPicker: PhotoPicker
+        
+        init(photoPicker: PhotoPicker) {
+            self.photoPicker = photoPicker
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            // code
+        }
     }
 }
