@@ -74,6 +74,7 @@ struct ProfileView: View {
             } label: {
                 Image(systemName: "keyboard.chevron.compact.down")
             }
+        
         }
         .sheet(isPresented: $isShowingPhotoPicker) {
             // when picture is selected it'll be set to avatar
@@ -90,6 +91,13 @@ struct ProfileView: View {
               bio.count < 100 else { return false }
         
         return true
+    }
+    
+    func createProfile() {
+        guard isValidProfile() else {
+            
+            return
+        }
     }
     
 }
