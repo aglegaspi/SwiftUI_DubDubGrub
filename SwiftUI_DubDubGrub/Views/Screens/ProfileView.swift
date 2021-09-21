@@ -15,6 +15,7 @@ struct ProfileView: View {
     @State private var bio          = ""
     @State private var avatar       = PlaceholderImage.avatar
     @State private var isShowingPhotoPicker = false
+    @State private var alertItem: AlertItem?
     
     var body: some View {
         VStack {
@@ -76,6 +77,11 @@ struct ProfileView: View {
             }
         
         }
+        .alert(item: $alertItem, content: { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dissmissButton)
+        })
         .sheet(isPresented: $isShowingPhotoPicker) {
             // when picture is selected it'll be set to avatar
             PhotoPicker(image: $avatar)
