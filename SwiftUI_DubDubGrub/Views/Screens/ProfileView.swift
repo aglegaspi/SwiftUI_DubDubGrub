@@ -63,7 +63,7 @@ struct ProfileView: View {
             Spacer()
             
             Button {
-                
+                createProfile()
             } label: {
                 DDGButton(title: "Create Profile")
             }
@@ -102,7 +102,7 @@ struct ProfileView: View {
     
     func createProfile() {
         guard isValidProfile() else {
-            
+            alertItem = AlertContext.invalidProfile
             return
         }
     }
