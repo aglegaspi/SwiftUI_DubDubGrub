@@ -23,6 +23,7 @@
 		EC872B662697B1D500B876DD /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B652697B1D500B876DD /* DDGProfile.swift */; };
 		EC872B682697B41000B876DD /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B672697B41000B876DD /* MockData.swift */; };
 		EC8E6A07268BD91000492B3D /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8E6A06268BD91000492B3D /* LocationDetailView.swift */; };
+		ECB07E4226FD0915002DA5AF /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB07E4126FD0915002DA5AF /* UIImage+Ext.swift */; };
 		ECC0126E26E0FA7E00B3E1E0 /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC0126D26E0FA7E00B3E1E0 /* CKAsset+Ext.swift */; };
 		ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CDF269476B60088E52D /* LocationCell.swift */; };
 		ECCE7CE2269477240088E52D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE7CE1269477240088E52D /* AvatarView.swift */; };
@@ -55,6 +56,7 @@
 		EC872B652697B1D500B876DD /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
 		EC872B672697B41000B876DD /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		EC8E6A06268BD91000492B3D /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
+		ECB07E4126FD0915002DA5AF /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		ECC0126D26E0FA7E00B3E1E0 /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
 		ECCE7CDF269476B60088E52D /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		ECCE7CE1269477240088E52D /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				EC0A7D152684AD4B00553858 /* Color+Ext.swift */,
 				ECCE7CE526947BE20088E52D /* View+Ext.swift */,
 				ECC0126D26E0FA7E00B3E1E0 /* CKAsset+Ext.swift */,
+				ECB07E4126FD0915002DA5AF /* UIImage+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				EC56884F26AF013200501476 /* LocationMapViewModel.swift in Sources */,
 				ECE3B6D0269C830C00A601A9 /* CloudKitManager.swift in Sources */,
 				ECCE7CE626947BE20088E52D /* View+Ext.swift in Sources */,
+				ECB07E4226FD0915002DA5AF /* UIImage+Ext.swift in Sources */,
 				ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */,
 				ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */,
 				ECCE7CE2269477240088E52D /* AvatarView.swift in Sources */,
