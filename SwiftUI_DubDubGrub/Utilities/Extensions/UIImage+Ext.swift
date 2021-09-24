@@ -9,6 +9,7 @@ import CloudKit
 import UIKit
 
 extension UIImage {
+    
     func convertToCKAsset() -> CKAsset? {
         
         // get apps base document directory url
@@ -21,13 +22,16 @@ extension UIImage {
         let fileURL = urlPath.appendingPathComponent("selectedAvatarImage")
         
         // write the image data to the location the address points to
-        let imageData = jpegData(compressionQuality: 0.25)
+        guard let imageData = jpegData(compressionQuality: 0.25) else { return nil }
         
         // create our CKAsset with fileURL
+        do {
+            try imageData.write(to: fileURL)
+            return CKAsset(fileURL: fileURL)
+        } catch {
+            return nil
+        }
         
-        
-        
-        return nil
     }
     
 }
