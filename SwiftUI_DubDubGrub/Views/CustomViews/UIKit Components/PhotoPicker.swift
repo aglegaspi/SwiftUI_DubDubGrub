@@ -39,7 +39,6 @@ struct PhotoPicker: UIViewControllerRepresentable {
             if let image = info[.editedImage] as? UIImage {
                 //keep the raw image and set
                 photoPicker.image = image
-                
             }
             
             picker.dismiss(animated: true)
