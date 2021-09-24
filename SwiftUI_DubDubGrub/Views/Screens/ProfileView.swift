@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 struct ProfileView: View {
     
@@ -101,10 +102,28 @@ struct ProfileView: View {
     }
     
     func createProfile() {
+        //check is all fields are valid
         guard isValidProfile() else {
             alertItem = AlertContext.invalidProfile
             return
         }
+        
+        // create our CKRecord from the profile view fields
+        let profileRecord = CKRecord(recordType: RecordType.profile)
+        profileRecord[DDGProfile.kFirstName] = firstName
+        profileRecord[DDGProfile.kLastName] = lastName
+        profileRecord[DDGProfile.kCompanyName] = companyName
+        profileRecord[DDGProfile.kBio] = bio
+        profileRecord[DDGProfile.kAvatar] = avatar.convertToCKAsset()
+        
+        // get our UserRecordID from the container
+        
+        // get our UserRecord from the Public Database
+        
+        // Create reference on UserRecord to the DDGProfile we created
+        
+        // create a CKOperatio to our User and Profile Records
+        
     }
     
 }
