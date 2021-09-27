@@ -10,13 +10,7 @@ import CloudKit
 
 struct ProfileView: View {
     
-    @State private var firstName    = ""
-    @State private var lastName     = ""
-    @State private var companyName  = ""
-    @State private var bio          = ""
-    @State private var avatar       = PlaceholderImage.avatar
-    @State private var isShowingPhotoPicker = false
-    @State private var alertItem: AlertItem?
+    @StateObject private var viewModel = ProfileViewModel()
     
     var body: some View {
         VStack {
@@ -25,21 +19,16 @@ struct ProfileView: View {
                 
                 HStack(spacing: 16) {
                     ZStack {
-                        AvatarView(image: avatar, size: 84)
+                        AvatarView(image: viewModel.avatar, size: 84)
                         EditImage()
                     }
                     .padding(.leading,12)
-                    .onTapGesture { isShowingPhotoPicker = true }
+                    .onTapGesture { viewModel.isShowingPhotoPicker = true }
                     
                     VStack(spacing: 1) {
-                        TextField("First Name", text: $firstName)
-                            .profileNameStyle()
-                        
-                        TextField("Last Name", text: $lastName)
-                            .profileNameStyle()
-                        
-                        TextField("Company Name", text: $companyName)
-                        
+                        TextField("First Name", text: $viewModel.firstName).profileNameStyle()
+                        TextField("Last Name", text: $viewModel.lastName).profileNameStyle()
+                        TextField("Company Name", text: $viewModel.companyName)
                     }
                     .padding(.trailing, 16)
                 }
@@ -47,9 +36,9 @@ struct ProfileView: View {
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                CharactersRemainView(currentCount: bio.count)
+                CharactersRemainView(currentCount: viewModel.bio.count)
                 
-                TextEditor(text: $bio)
+                TextEditor(text: $viewModel.bio)
                     .frame(height: 100)
                     .overlay(RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
@@ -75,129 +64,19 @@ struct ProfileView: View {
             }
             
         } // toolbar
-        .onAppear { getProfile() }
-        .alert(item: $alertItem, content: { alertItem in
+        .onAppear { viewModel.getProfile() }
+        .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
                   dismissButton: alertItem.dissmissButton)
         }) // alert
-        .sheet(isPresented: $isShowingPhotoPicker) {
+        .sheet(isPresented: $viewModel.isShowingPhotoPicker) {
             // when picture is selected it'll be set to avatar
-            PhotoPicker(image: $avatar)
+            PhotoPicker(image: $viewModel.avatar)
         } // sheet
     } // body
     
-    func isValidProfile() -> Bool {
-        
-        guard !firstName.isEmpty,
-              !lastName.isEmpty,
-              !companyName.isEmpty,
-              avatar != PlaceholderImage.avatar,
-              bio.count < 100 else { return false }
-        
-        return true
-    } // isValidProfile
-    
-    func createProfile() {
-        guard isValidProfile() else {
-            alertItem = AlertContext.invalidProfile
-            return
-        }
-        
-        let ckAvatar = avatar.convertToCKAsset()
-        
-        // Create our CKRecord from the profile view
-        let profileRecord = CKRecord(recordType: RecordType.profile)
-        profileRecord[DDGProfile.kFirstName] = firstName
-        profileRecord[DDGProfile.kLastName] = lastName
-        profileRecord[DDGProfile.kCompanyName] = companyName
-        profileRecord[DDGProfile.kBio] = bio
-        profileRecord[DDGProfile.kAvatar] = ckAvatar
-        
-        // Get our UserRecordID from the Container
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            print(recordID)
-            print()
-            // Get UserRecord from the Public Database
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                // Create reference on UserRecord to the DDGProfile we created
-                userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
-                
-                
-                print(userRecord)
-                print()
-                print(profileRecord)
-                print()
-                // Create a CKOperation to save our User and Profile Records
-                let operation = CKModifyRecordsOperation(recordsToSave: [userRecord, profileRecord])
-                
-                operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
-                    guard let savedRecords = savedRecords, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    print(savedRecords)
-                }
-                
-                CKContainer.default().publicCloudDatabase.add(operation)
-            }
-        }
-    } // createProfile
-    
-    
-    func getProfile() {
-        // get user recordID
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            // get the user record
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                // grab the reference from user record
-                let profileReference = userRecord["userProfile"] as! CKRecord.Reference
-                // get recordID of our profile record
-                let profileRecordID = profileReference.recordID
-                
-                // fetch record based on ID
-                CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
-                    guard let profileRecord = profileRecord, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    // go to the main thread to update UI
-                    DispatchQueue.main.async {
-                        let profile = DDGProfile(record: profileRecord)
-                        firstName = profile.firstName
-                        lastName = profile.lastName
-                        companyName = profile.companyName
-                        bio = profile.bio
-                        avatar = profile.convertAvatarImage()
-                    }
-                }
-            }
-        }
-    } // getProfile
-    
-}
+}//struct
 
 
 
