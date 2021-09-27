@@ -24,7 +24,7 @@ final class ProfileViewModel: ObservableObject {
               !lastName.isEmpty,
               !companyName.isEmpty,
               avatar != PlaceholderImage.avatar,
-              bio.count < 100 else { return false }
+              bio.count <= 100 else { return false }
         
         return true
     } // isValidProfile
@@ -36,15 +36,7 @@ final class ProfileViewModel: ObservableObject {
             return
         }
         
-        let ckAvatar = avatar.convertToCKAsset()
-        
-        // Create our CKRecord from the profile view
-        let profileRecord = CKRecord(recordType: RecordType.profile)
-        profileRecord[DDGProfile.kFirstName] = firstName
-        profileRecord[DDGProfile.kLastName] = lastName
-        profileRecord[DDGProfile.kCompanyName] = companyName
-        profileRecord[DDGProfile.kBio] = bio
-        profileRecord[DDGProfile.kAvatar] = ckAvatar
+        let profileRecord = createProfileRecord()
         
         // Get our UserRecordID from the Container
         CKContainer.default().fetchUserRecordID { recordID, error in
@@ -53,8 +45,7 @@ final class ProfileViewModel: ObservableObject {
                 return
             }
             
-            print(recordID)
-            print()
+            
             // Get UserRecord from the Public Database
             CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
                 guard let userRecord = userRecord, error == nil else {
@@ -65,11 +56,6 @@ final class ProfileViewModel: ObservableObject {
                 // Create reference on UserRecord to the DDGProfile we created
                 userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
                 
-                
-                print(userRecord)
-                print()
-                print(profileRecord)
-                print()
                 // Create a CKOperation to save our User and Profile Records
                 let operation = CKModifyRecordsOperation(recordsToSave: [userRecord, profileRecord])
                 
@@ -129,5 +115,16 @@ final class ProfileViewModel: ObservableObject {
         }
     } // getProfile
     
+    private func createProfileRecord() -> CKRecord {
+        // Create our CKRecord from the profile view
+        let profileRecord = CKRecord(recordType: RecordType.profile)
+        profileRecord[DDGProfile.kFirstName] = firstName
+        profileRecord[DDGProfile.kLastName] = lastName
+        profileRecord[DDGProfile.kCompanyName] = companyName
+        profileRecord[DDGProfile.kBio] = bio
+        profileRecord[DDGProfile.kAvatar] = avatar.convertToCKAsset()
+        
+        return profileRecord
+    } // createProfileRecord
 }
 
