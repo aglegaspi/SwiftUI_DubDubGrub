@@ -30,13 +30,13 @@ final class CloudKitManager {
                 }
                 
                 self.userRecord = userRecord
-                print(self.userRecord)
             }
         }
     }
     
     // communication with CloudKit get locations, fetch users checking in, save profile, download profile
     func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
+        
         let sortDescriptor = NSSortDescriptor(key: DDGLocation.kName, ascending: true)
         
         // query the record type "location" and give me all the locations
@@ -56,6 +56,35 @@ final class CloudKitManager {
             
             completed(.success(locations))
             
+        }
+    }
+    
+    // batch save
+    func batchSave(records: [CKRecord], completed: @escaping (Result<[CKRecord], Error>) -> Void) {
+        // Create a CKOperation to save our User and Profile Records
+        let operation = CKModifyRecordsOperation(recordsToSave: records)
+        
+        operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
+            guard let savedRecords = savedRecords, error == nil else {
+                print(error!.localizedDescription)
+                completed(.failure(error!))
+                return
+            }
+            
+            completed(.success(savedRecords))
+        }
+        
+        CKContainer.default().publicCloudDatabase.add(operation)
+    } // batchSave
+    
+    func fetchRecord(with id: CKRecord.ID, completed: @escaping (Result<CKRecord, Error>) -> Void) {
+        // fetch record based on ID
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: id) { record, error in
+            guard let record = record, error == nil else {
+                completed(.failure(error!))
+                return
+            }
+            completed(.success(record))
         }
     }
 }

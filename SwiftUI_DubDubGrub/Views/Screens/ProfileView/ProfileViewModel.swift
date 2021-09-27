@@ -38,81 +38,71 @@ final class ProfileViewModel: ObservableObject {
         
         let profileRecord = createProfileRecord()
         
-        // Get our UserRecordID from the Container
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            
-            // Get UserRecord from the Public Database
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                // Create reference on UserRecord to the DDGProfile we created
-                userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
-                
-                // Create a CKOperation to save our User and Profile Records
-                let operation = CKModifyRecordsOperation(recordsToSave: [userRecord, profileRecord])
-                
-                operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
-                    guard let savedRecords = savedRecords, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    print(savedRecords)
-                }
-                
-                CKContainer.default().publicCloudDatabase.add(operation)
-            }
+        guard let userRecord = CloudKitManager.shared.userRecord else {
+            #warning("Show Alert")
+            return
         }
+        
+        // Create reference on UserRecord to the DDGProfile we created
+        userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
+        
+        CloudKitManager.shared.batchSave(records: [userRecord, profileRecord]) { result in
+            switch result {
+            case .success(_):
+                #warning("show alert")
+                break
+            case .failure(_):
+                #warning("show alert")
+                break
+            } //switch
+        }//CloundKitManager
+        
     } // createProfile
     
     // MARK: - Get Profile
     func getProfile() {
-        // get user recordID
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
+        
+        guard let userRecord = CloudKitManager.shared.userRecord else {
+            #warning("Show Alert")
+            return
+        }
+        
+        // grab the reference from user record
+        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else {
+            #warning("show alert")
+            return
+        }
+        
+        // get recordID of our profile record
+        let profileRecordID = profileReference.recordID
+        
+        CloudKitManager.shared.fetchRecord(with: profileRecordID) { result in
+            
+            switch result {
+            case .success(let record):
+                DispatchQueue.main.async { [self] in
+                    let profile = DDGProfile(record: record)
+                    firstName = profile.firstName
+                    lastName = profile.lastName
+                    companyName = profile.companyName
+                    bio = profile.bio
+                    avatar = profile.convertAvatarImage()
+                }
+            case .failure(_):
+                break
             }
             
-            // get the user record
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
+            // fetch record based on ID
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
+                guard let profileRecord = profileRecord, error == nil else {
                     print(error!.localizedDescription)
                     return
                 }
                 
-                // grab the reference from user record
-                let profileReference = userRecord["userProfile"] as! CKRecord.Reference
-                // get recordID of our profile record
-                let profileRecordID = profileReference.recordID
+                // go to the main thread to update UI
                 
-                // fetch record based on ID
-                CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
-                    guard let profileRecord = profileRecord, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    // go to the main thread to update UI
-                    DispatchQueue.main.async { [self] in
-                        let profile = DDGProfile(record: profileRecord)
-                        firstName = profile.firstName
-                        lastName = profile.lastName
-                        companyName = profile.companyName
-                        bio = profile.bio
-                        avatar = profile.convertAvatarImage()
-                    }
-                }
-            }
-        }
+            } //DispatchQueue
+        } //CKContainer
     } // getProfile
     
     private func createProfileRecord() -> CKRecord {
@@ -126,5 +116,5 @@ final class ProfileViewModel: ObservableObject {
         
         return profileRecord
     } // createProfileRecord
-}
+} // ProfileViewModel
 
