@@ -26,13 +26,10 @@ struct ProfileView: View {
                 HStack(spacing: 16) {
                     ZStack {
                         AvatarView(image: avatar, size: 84)
-                            .padding(.leading,12)
-                            .onTapGesture {
-                                isShowingPhotoPicker = true
-                            }
-                        
                         EditImage()
                     }
+                    .padding(.leading,12)
+                    .onTapGesture { isShowingPhotoPicker = true }
                     
                     VStack(spacing: 1) {
                         TextField("First Name", text: $firstName)
@@ -49,15 +46,13 @@ struct ProfileView: View {
                 .padding()
             }
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 CharactersRemainView(currentCount: bio.count)
                 
                 TextEditor(text: $bio)
                     .frame(height: 100)
-                    .padding()
-                    
                     .overlay(RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.secondary,lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+                                .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
             }
             .padding(.horizontal, 20)
             
@@ -102,31 +97,64 @@ struct ProfileView: View {
     }
     
     func createProfile() {
-        //check is all fields are valid
         guard isValidProfile() else {
             alertItem = AlertContext.invalidProfile
             return
         }
         
-        // create our CKRecord from the profile view fields
+        let ckAvatar = avatar.convertToCKAsset()
+        
+        // Create our CKRecord from the profile view
         let profileRecord = CKRecord(recordType: RecordType.profile)
         profileRecord[DDGProfile.kFirstName] = firstName
         profileRecord[DDGProfile.kLastName] = lastName
         profileRecord[DDGProfile.kCompanyName] = companyName
         profileRecord[DDGProfile.kBio] = bio
-        profileRecord[DDGProfile.kAvatar] = avatar.convertToCKAsset()
+        profileRecord[DDGProfile.kAvatar] = ckAvatar
         
-        // get our UserRecordID from the container
-        
-        // get our UserRecord from the Public Database
-        
-        // Create reference on UserRecord to the DDGProfile we created
-        
-        // create a CKOperatio to our User and Profile Records
-        
+        // Get our UserRecordID from the Container
+        CKContainer.default().fetchUserRecordID { recordID, error in
+            guard let recordID = recordID, error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            print(recordID)
+            print()
+            // Get UserRecord from the Public Database
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
+                guard let userRecord = userRecord, error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                // Create reference on UserRecord to the DDGProfile we created
+                userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
+                
+                
+                print(userRecord)
+                print()
+                print(profileRecord)
+                print()
+                // Create a CKOperation to save our User and Profile Records
+                let operation = CKModifyRecordsOperation(recordsToSave: [userRecord, profileRecord])
+                
+                operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
+                    guard let savedRecords = savedRecords, error == nil else {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    
+                    print(savedRecords)
+                }
+                
+                CKContainer.default().publicCloudDatabase.add(operation)
+            }
+        }
     }
-    
 }
+
+
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
