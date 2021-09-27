@@ -7,10 +7,36 @@
 
 import CloudKit
 
-struct CloudKitManager {
-    // communication with CloudKit get locations, fetch users checking in, save profile, download profile
+final class CloudKitManager {
     
-    static func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
+    static let shared = CloudKitManager()
+    
+    private init() {}
+    
+    var userRecord: CKRecord?
+    
+    func getUserRecord() {
+        
+        CKContainer.default().fetchUserRecordID { recordID, error in
+            guard let recordID = recordID, error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
+                guard let userRecord = userRecord, error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                self.userRecord = userRecord
+                print(self.userRecord)
+            }
+        }
+    }
+    
+    // communication with CloudKit get locations, fetch users checking in, save profile, download profile
+    func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
         let sortDescriptor = NSSortDescriptor(key: DDGLocation.kName, ascending: true)
         
         // query the record type "location" and give me all the locations
@@ -32,5 +58,4 @@ struct CloudKitManager {
             
         }
     }
-    
 }

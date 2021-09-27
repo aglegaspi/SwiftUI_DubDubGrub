@@ -23,6 +23,9 @@ struct AppTabView: View {
             }
             .tabItem { Label("Profile", systemImage: "person") }
         }
+        .onAppear {
+            CloudKitManager.shared.getUserRecord()
+        }
         .accentColor(.brandPrimary)
         
     }
