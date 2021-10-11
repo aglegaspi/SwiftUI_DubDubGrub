@@ -40,7 +40,7 @@ final class ProfileViewModel: ObservableObject {
         let profileRecord = createProfileRecord()
         
         guard let userRecord = CloudKitManager.shared.userRecord else {
-            #warning("Show Alert")
+            alertItem = AlertContext.noUserRecord
             return
         }
         
@@ -55,10 +55,10 @@ final class ProfileViewModel: ObservableObject {
                 
                 switch result {
                 case .success(_):
-                    #warning("show alert")
+                    alertItem = AlertContext.createProfileSuccess
                     break
                 case .failure(_):
-                    #warning("show alert")
+                    alertItem = AlertContext.createProfileFailure
                     break
                 } //switch
             }
@@ -71,15 +71,12 @@ final class ProfileViewModel: ObservableObject {
     func getProfile() {
         
         guard let userRecord = CloudKitManager.shared.userRecord else {
-            #warning("Show Alert")
+            alertItem = AlertContext.noUserRecord
             return
         }
         
         // grab the reference from user record
-        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else {
-            #warning("show alert")
-            return
-        }
+        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else { return }
         
         // get recordID of our profile record
         let profileRecordID = profileReference.recordID
@@ -100,6 +97,7 @@ final class ProfileViewModel: ObservableObject {
                     bio = profile.bio
                     avatar = profile.convertAvatarImage()
                 case .failure(_):
+                    alertItem = AlertContext.unableToGetProfile
                     break
                 }
                 

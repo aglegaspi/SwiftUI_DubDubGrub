@@ -38,4 +38,20 @@ struct AlertContext {
                                                 message: Text("All fields are required as well as a profile photo. Your bio must be < 100 characters. \n Please try again"),
                                                 dissmissButton: .default(Text("OK")))
     
+    static let noUserRecord = AlertItem(title: Text("No User Record"),
+                                                message: Text("Must be logged on to iCloud to utilize profile. \n Please login via Settings"),
+                                                dissmissButton: .default(Text("OK")))
+    
+    static let createProfileSuccess = AlertItem(title: Text("Profile Created Successfully"),
+                                                message: Text("You're profile has successfully been created."),
+                                                dissmissButton: .default(Text("OK")))
+    
+    static let createProfileFailure = AlertItem(title: Text("Failed To Create Profile"),
+                                                message: Text("Unable to create profile \n Please try again later or contact us if this persists"),
+                                                dissmissButton: .default(Text("OK")))
+    
+    static let unableToGetProfile = AlertItem(title: Text("Unable to retrieve Profile"),
+                                                message: Text("Please check your internet and try again. \n If probelm persists please contact us."),
+                                                dissmissButton: .default(Text("OK")))
+    
 }
