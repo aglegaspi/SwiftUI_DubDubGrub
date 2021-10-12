@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import MapKit
+
 
 final class LocationDetailViewModel: ObservableObject {
     
@@ -18,7 +20,11 @@ final class LocationDetailViewModel: ObservableObject {
     }
     
     func getDirectionsToLocation() {
+        let placemark = MKPlacemark(coordinate: location.location.coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = location.name
         
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     }
     
     func callLocation() {
