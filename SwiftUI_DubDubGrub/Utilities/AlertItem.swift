@@ -54,4 +54,12 @@ struct AlertContext {
                                                 message: Text("Please check your internet and try again. \n If probelm persists please contact us."),
                                                 dissmissButton: .default(Text("OK")))
     
+    static let updateProfileSuccess = AlertItem(title: Text("Profile Updated Successfully"),
+                                                message: Text("Your profile has been updated."),
+                                                dissmissButton: .default(Text("OK")))
+    
+    static let updateProfileFailure = AlertItem(title: Text("Failed To Update Profile"),
+                                                message: Text("Unable to update your profile. \n Please Try again"),
+                                                dissmissButton: .default(Text("OK")))
+    
 }

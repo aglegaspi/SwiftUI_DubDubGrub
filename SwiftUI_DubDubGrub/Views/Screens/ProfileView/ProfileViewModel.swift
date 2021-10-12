@@ -18,6 +18,8 @@ final class ProfileViewModel: ObservableObject {
     @Published var isLoading    = false
     @Published var alertItem: AlertItem?
     
+    private var existingProfileRecord: CKRecord?
+    
     // MARK: - Is Valid Profile
     func isValidProfile() -> Bool {
         
@@ -54,7 +56,10 @@ final class ProfileViewModel: ObservableObject {
                 hideLoadingView()
                 
                 switch result {
-                case .success(_):
+                case .success(let records):
+                    for record in records where record.recordType == RecordType.profile {
+                        existingProfileRecord = record
+                    }
                     alertItem = AlertContext.createProfileSuccess
                     break
                 case .failure(_):
@@ -64,7 +69,6 @@ final class ProfileViewModel: ObservableObject {
             }
             
         }//CloundKitManager
-        
     } // createProfile
     
     // MARK: - Get Profile
@@ -89,6 +93,7 @@ final class ProfileViewModel: ObservableObject {
                 hideLoadingView()
                 switch result {
                 case .success(let record):
+                    existingProfileRecord = record
                     
                     let profile = DDGProfile(record: record)
                     firstName = profile.firstName
@@ -101,23 +106,57 @@ final class ProfileViewModel: ObservableObject {
                     break
                 }
                 
-                // fetch record based on ID
-                CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
-                    guard let profileRecord = profileRecord, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    // go to the main thread to update UI
-                    
-                }
-            } //CKContainer
-        } //DispatchQueue
+//                // fetch record based on ID
+//                CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
+//                    guard let profileRecord = profileRecord, error == nil else {
+//                        print(error!.localizedDescription)
+//                        return
+//                    }
+//
+//                    // go to the main thread to update UI
+//              }
+                
+                } //DispatchQueue
+        } // CloudKitManager
     } // getProfile
+    
+    func updateProfile() {
+        guard isValidProfile() else {
+            alertItem = AlertContext.invalidProfile
+            return
+        }
+        
+        guard let profileRecord = existingProfileRecord else {
+            alertItem = AlertContext.unableToGetProfile
+            return
+        }
+        
+        profileRecord[DDGProfile.kFirstName] = firstName
+        profileRecord[DDGProfile.kLastName] = lastName
+        profileRecord[DDGProfile.kCompanyName] = companyName
+        profileRecord[DDGProfile.kBio] = bio
+        profileRecord[DDGProfile.kAvatar] = avatar.convertToCKAsset()
+        
+        showLoadingView()
+        CloudKitManager.shared.save(record: profileRecord) { result in
+            DispatchQueue.main.async { [self] in
+                hideLoadingView()
+                
+                switch result {
+                case .success(_):
+                    alertItem = AlertContext.updateProfileSuccess
+                case .failure(_):
+                    alertItem = AlertContext.updateProfileFailure
+                }
+            }
+            
+        }
+    }
     
     private func createProfileRecord() -> CKRecord {
         // Create our CKRecord from the profile view
         let profileRecord = CKRecord(recordType: RecordType.profile)
+        existingProfileRecord = profileRecord
         profileRecord[DDGProfile.kFirstName] = firstName
         profileRecord[DDGProfile.kLastName] = lastName
         profileRecord[DDGProfile.kCompanyName] = companyName
