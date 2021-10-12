@@ -78,6 +78,11 @@ struct LocationDetailView: View {
                 Spacer()
                 
             }
+            .alert(item: $viewModel.alertItem, content: { alertItem in
+                Alert(title: alertItem.title,
+                      message: alertItem.message,
+                      dismissButton: alertItem.dissmissButton)
+            }) // alert
             .navigationTitle(viewModel.location.name)
             .navigationBarTitleDisplayMode(.inline)
     }
