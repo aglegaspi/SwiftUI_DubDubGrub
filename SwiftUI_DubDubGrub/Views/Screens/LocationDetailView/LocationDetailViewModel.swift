@@ -17,5 +17,11 @@ final class LocationDetailViewModel: ObservableObject {
         self.location = location
     }
     
+    func getDirectionsToLocation() {
+        
+    }
     
+    func callLocation() {
+        
+    }
 }
