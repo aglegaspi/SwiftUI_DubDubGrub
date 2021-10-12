@@ -9,16 +9,14 @@ import SwiftUI
 
 struct LocationDetailView: View {
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    
-    var location: DDGLocation
+    @ObservedObject var viewModel: LocationDetailViewModel
     
     var body: some View {
             VStack(spacing: 16) {
-                BannerImageView(image: location.createBannerImage())
+                BannerImageView(image: viewModel.location.createBannerImage())
                 
                 HStack {
-                    Label(location.address, systemImage: "mappin.and.ellipse")
+                    Label(viewModel.location.address, systemImage: "mappin.and.ellipse")
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
@@ -26,7 +24,7 @@ struct LocationDetailView: View {
                 }
                 .padding(.horizontal)
                 
-                DescriptionView(text: location.description)
+                DescriptionView(text: viewModel.location.description)
                 
                 ZStack {
                     Capsule()
@@ -40,7 +38,7 @@ struct LocationDetailView: View {
                         LocationActionButton(color: .brandPrimary, imageName: "location.fill")
                         }
                         
-                        Link(destination: URL(string: location.websiteURL)!, label: {
+                        Link(destination: URL(string: viewModel.location.websiteURL)!, label: {
                             LocationActionButton(color: .brandPrimary, imageName: "network")
                         })
                         
@@ -64,7 +62,7 @@ struct LocationDetailView: View {
                     .font(.title2)
                 
                 ScrollView {
-                    LazyVGrid(columns: columns, content: {
+                    LazyVGrid(columns: viewModel.columns, content: {
                         FirstNameAvatarView(firstName: "Alex")
                         FirstNameAvatarView(firstName: "Sean")
                         FirstNameAvatarView(firstName: "Lex")
@@ -80,14 +78,14 @@ struct LocationDetailView: View {
                 Spacer()
                 
             }
-            .navigationTitle(location.name)
+            .navigationTitle(viewModel.location.name)
             .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView(location: DDGLocation(record: MockData.location))
+        LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.location)) )
     }
 }
 
