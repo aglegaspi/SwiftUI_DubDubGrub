@@ -62,9 +62,7 @@ final class ProfileViewModel: ObservableObject {
                 
                 switch result {
                 case .success(let records):
-                    for record in records where record.recordType == RecordType.profile {
-                        existingProfileRecord = record
-                    }
+                    existingProfileRecord = records.first(where: { $0.recordType == RecordType.profile} )
                     alertItem = AlertContext.createProfileSuccess
                     break
                 case .failure(_):
