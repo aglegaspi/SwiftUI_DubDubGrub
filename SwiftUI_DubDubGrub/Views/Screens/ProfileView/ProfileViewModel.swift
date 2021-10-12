@@ -7,6 +7,8 @@
 
 import CloudKit
 
+enum ProfileContext { case create, update }
+
 final class ProfileViewModel: ObservableObject {
     
     @Published var firstName    = ""
@@ -18,7 +20,10 @@ final class ProfileViewModel: ObservableObject {
     @Published var isLoading    = false
     @Published var alertItem: AlertItem?
     
-    private var existingProfileRecord: CKRecord?
+    private var existingProfileRecord: CKRecord? {
+        didSet { profileContext = .update }
+    }
+    var profileContext: ProfileContext = .create
     
     // MARK: - Is Valid Profile
     func isValidProfile() -> Bool {
