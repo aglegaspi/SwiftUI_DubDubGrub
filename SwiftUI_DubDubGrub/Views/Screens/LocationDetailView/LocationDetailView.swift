@@ -75,7 +75,7 @@ struct LocationDetailView: View {
             }
             
             if viewModel.isShowingProfileModal {
-                ProfileModalView(isShowingProfileModel: $viewModel.isShowingProfileModal, profile: DDGProfile(record: MockData.profile))
+                ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModal, profile: DDGProfile(record: MockData.profile))
             }
         }
         .alert(item: $viewModel.alertItem, content: { alertItem in
