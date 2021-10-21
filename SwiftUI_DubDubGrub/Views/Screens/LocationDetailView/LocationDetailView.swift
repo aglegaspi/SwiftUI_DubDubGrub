@@ -63,15 +63,11 @@ struct LocationDetailView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: viewModel.columns, content: {
-                        FirstNameAvatarView(firstName: "Alex")
-                        FirstNameAvatarView(firstName: "Sean")
-                        FirstNameAvatarView(firstName: "Lex")
-                        FirstNameAvatarView(firstName: "Dawn")
-                        FirstNameAvatarView(firstName: "Steven")
-                        FirstNameAvatarView(firstName: "Alexa")
-                        FirstNameAvatarView(firstName: "Alexis")
-                        FirstNameAvatarView(firstName: "Alexandria")
-                        FirstNameAvatarView(firstName: "Cindy")
+                        FirstNameAvatarView(image: PlaceholderImage.avatar, firstName: "Alex")
+                            .onTapGesture {
+                                viewModel.isShowingProfileModal = true
+                            }
+        
                     })
                 }
                     
@@ -115,11 +111,12 @@ struct LocationActionButton: View {
 
 struct FirstNameAvatarView: View {
     
+    var image: UIImage
     var firstName: String
     
     var body: some View {
         VStack {
-            AvatarView(image: PlaceholderImage.avatar, size: 64)
+            AvatarView(image: image, size: 64)
             
             Text(firstName)
                 .bold()
