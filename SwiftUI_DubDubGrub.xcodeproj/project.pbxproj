@@ -16,6 +16,7 @@
 		EC0A7D222684AE5C00553858 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A7D212684AE5C00553858 /* ProfileView.swift */; };
 		EC293FF827162EA800F39F8F /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC293FF727162EA800F39F8F /* LocationDetailViewModel.swift */; };
 		EC40FE7326FA27540056209F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40FE7226FA27540056209F /* PhotoPicker.swift */; };
+		EC461B992721AE9500EE7365 /* ProfileModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC461B982721AE9500EE7365 /* ProfileModalView.swift */; };
 		EC4F8FDD27025B2A00A5FF09 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F8FDC27025B2A00A5FF09 /* ProfileViewModel.swift */; };
 		EC5585DA26E7D6F400951D70 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5585D926E7D6F400951D70 /* OnboardView.swift */; };
 		EC5585DC26E7D76A00951D70 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5585DB26E7D76A00951D70 /* LogoView.swift */; };
@@ -53,6 +54,7 @@
 		EC0A7D212684AE5C00553858 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EC293FF727162EA800F39F8F /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		EC40FE7226FA27540056209F /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		EC461B982721AE9500EE7365 /* ProfileModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalView.swift; sourceTree = "<group>"; };
 		EC4F8FDC27025B2A00A5FF09 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		EC5585D926E7D6F400951D70 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 		EC5585DB26E7D76A00951D70 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				EC8E6A06268BD91000492B3D /* LocationDetailView.swift */,
 				EC293FF727162EA800F39F8F /* LocationDetailViewModel.swift */,
+				EC461B982721AE9500EE7365 /* ProfileModalView.swift */,
 			);
 			path = LocationDetailView;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				ECE8753A26DFE442006ECB70 /* LocationManager.swift in Sources */,
 				EC56884F26AF013200501476 /* LocationMapViewModel.swift in Sources */,
 				ECE3B6D0269C830C00A601A9 /* CloudKitManager.swift in Sources */,
+				EC461B992721AE9500EE7365 /* ProfileModalView.swift in Sources */,
 				ECCE7CE626947BE20088E52D /* View+Ext.swift in Sources */,
 				ECB07E4226FD0915002DA5AF /* UIImage+Ext.swift in Sources */,
 				ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */,
