@@ -12,6 +12,7 @@ struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
     
     var body: some View {
+        ZStack {
             VStack(spacing: 16) {
                 BannerImageView(image: viewModel.location.createBannerImage())
                 
@@ -35,7 +36,7 @@ struct LocationDetailView: View {
                         Button {
                             viewModel.getDirectionsToLocation()
                         } label: {
-                        LocationActionButton(color: .brandPrimary, imageName: "location.fill")
+                            LocationActionButton(color: .brandPrimary, imageName: "location.fill")
                         }
                         
                         Link(destination: URL(string: viewModel.location.websiteURL)!, label: {
@@ -45,13 +46,13 @@ struct LocationDetailView: View {
                         Button {
                             viewModel.callLocation()
                         } label: {
-                        LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
+                            LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
                         }
                         
                         Button {
                             
                         } label: {
-                        LocationActionButton(color: .brandPrimary, imageName: "person.fill.checkmark")
+                            LocationActionButton(color: .brandPrimary, imageName: "person.fill.checkmark")
                         }
                     }
                 }
@@ -67,20 +68,19 @@ struct LocationDetailView: View {
                             .onTapGesture {
                                 viewModel.isShowingProfileModal = true
                             }
-        
                     })
                 }
-                    
                 Spacer()
                 
             }
-            .alert(item: $viewModel.alertItem, content: { alertItem in
-                Alert(title: alertItem.title,
-                      message: alertItem.message,
-                      dismissButton: alertItem.dissmissButton)
-            }) // alert
-            .navigationTitle(viewModel.location.name)
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .alert(item: $viewModel.alertItem, content: { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dissmissButton)
+        }) // alert
+        .navigationTitle(viewModel.location.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
