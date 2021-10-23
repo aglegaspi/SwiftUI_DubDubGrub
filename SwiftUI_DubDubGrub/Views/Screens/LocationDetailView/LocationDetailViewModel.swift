@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+enum CheckInStatus { case checkedIn, checkedOut }
 
 final class LocationDetailViewModel: ObservableObject {
     
@@ -40,6 +41,15 @@ final class LocationDetailViewModel: ObservableObject {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+        
+    }
+    
+    func updateCheckInStatus(to checkInStatus: CheckInStatus) {
+        // Retrieve the DDGProfile
+        
+        // Create a reference to the locations
+        
+        // Save the updated profile to CloudKit
         
     }
 }
