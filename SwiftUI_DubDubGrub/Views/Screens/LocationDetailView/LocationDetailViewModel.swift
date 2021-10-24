@@ -95,22 +95,21 @@ final class LocationDetailViewModel: ObservableObject {
                 
             }
         }
-        
-        // Create a reference to the locations
-        func getCheckedInProfiles() {
-            CloudKitManager.shared.getCheckedInProfiles(for: location.id) { [self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                        
-                    case .success(let profiles):
-                        checkedInProfiles = profiles
-                    case .failure(_):
-                        print("error fetching checkedIn profiles")
-                    }
+    } // updateCheckInStatus()
+    
+    // Create a reference to the locations
+    func getCheckedInProfiles() {
+        CloudKitManager.shared.getCheckedInProfiles(for: location.id) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(let profiles):
+                    self.checkedInProfiles = profiles
+                case .failure(_):
+                    print("error fetching checkedIn profiles")
                 }
             }
         }
-        
-        
-    }
+    } // getCheckedInProfiles()
+    
 }
