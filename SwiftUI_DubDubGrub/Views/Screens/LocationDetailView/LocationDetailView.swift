@@ -64,10 +64,14 @@ struct LocationDetailView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: viewModel.columns, content: {
-                        FirstNameAvatarView(image: PlaceholderImage.avatar, firstName: "Alex")
-                            .onTapGesture {
-                                viewModel.isShowingProfileModal = true
-                            }
+                        
+                        ForEach(viewModel.checkedInProfiles) { profile in
+                            FirstNameAvatarView(profile: profile)
+                                .onTapGesture {
+                                    viewModel.isShowingProfileModal = true
+                                }
+                        }
+                        
                     })
                 }
                 Spacer()
@@ -124,14 +128,13 @@ struct LocationActionButton: View {
 
 struct FirstNameAvatarView: View {
     
-    var image: UIImage
-    var firstName: String
+    var profile: DDGProfile
     
     var body: some View {
         VStack {
-            AvatarView(image: image, size: 64)
+            AvatarView(image: profile.convertAvatarImage(), size: 64)
             
-            Text(firstName)
+            Text(profile.firstName)
                 .bold()
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
