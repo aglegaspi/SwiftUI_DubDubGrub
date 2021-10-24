@@ -72,7 +72,7 @@ final class LocationDetailViewModel: ObservableObject {
                     
                     DispatchQueue.main.async {
                         switch result {
-                            case .success(_):
+                            case .success(let record):
                                 // update our checkedInProfiles array
                                 let profile = DDGProfile(record: record)
                             
