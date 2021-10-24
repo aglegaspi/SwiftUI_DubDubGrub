@@ -62,20 +62,29 @@ struct LocationDetailView: View {
                     .bold()
                     .font(.title2)
                 
-                ScrollView {
-                    LazyVGrid(columns: viewModel.columns, content: {
-                        
-                        ForEach(viewModel.checkedInProfiles) { profile in
-                            FirstNameAvatarView(profile: profile)
-                                .onTapGesture {
-                                    viewModel.isShowingProfileModal = true
-                                }
-                        }
-                        
-                    })
-                }
-                Spacer()
+                if viewModel.checkedInProfiles.isEmpty {
+                    Text("Nobody's Here 🥸")
+                        .bold()
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 30)
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: viewModel.columns, content: {
+                            
+                            ForEach(viewModel.checkedInProfiles) { profile in
+                                FirstNameAvatarView(profile: profile)
+                                    .onTapGesture {
+                                        viewModel.isShowingProfileModal = true
+                                    }
+                            }
+                            
+                        })
+                    } //scrollview
+                } //else
                 
+
+                Spacer()
             }
             
             if viewModel.isShowingProfileModal {
