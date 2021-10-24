@@ -110,16 +110,6 @@ final class ProfileViewModel: ObservableObject {
                     break
                 }
                 
-//                // fetch record based on ID
-//                CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
-//                    guard let profileRecord = profileRecord, error == nil else {
-//                        print(error!.localizedDescription)
-//                        return
-//                    }
-//
-//                    // go to the main thread to update UI
-//              }
-                
                 } //DispatchQueue
         } // CloudKitManager
     } // getProfile
