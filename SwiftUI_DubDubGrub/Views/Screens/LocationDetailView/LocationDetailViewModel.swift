@@ -13,9 +13,10 @@ enum CheckInStatus { case checkedIn, checkedOut }
 
 final class LocationDetailViewModel: ObservableObject {
     
+    @Published var checkedInProfiles: [DDGProfile] = []
     @Published var alertItem: AlertItem?
     @Published var isShowingProfileModal: Bool = false
-    @Published var checkedInProfiles: [DDGProfile] = []
+    
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     

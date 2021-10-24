@@ -91,6 +91,7 @@ struct LocationDetailView: View {
                     .zIndex(2)
             }
         }
+        .onAppear { viewModel.getCheckedInProfiles() }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
