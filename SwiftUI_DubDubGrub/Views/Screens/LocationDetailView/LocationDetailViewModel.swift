@@ -14,6 +14,7 @@ enum CheckInStatus { case checkedIn, checkedOut }
 final class LocationDetailViewModel: ObservableObject {
     
     @Published var checkedInProfiles: [DDGProfile] = []
+    @Published var isCheckedIn = false
     @Published var alertItem: AlertItem?
     @Published var isShowingProfileModal: Bool = false
     
@@ -67,28 +68,28 @@ final class LocationDetailViewModel: ObservableObject {
                 }
                 
                 // Save the updated profile to CloudKit
-                CloudKitManager.shared.save(record: record) { result in
+                CloudKitManager.shared.save(record: record) { [self] result in
                     
                     DispatchQueue.main.async {
                         switch result {
-                            
                             case .success(_):
                                 // update our checkedInProfiles array
                                 let profile = DDGProfile(record: record)
-                                
+                            
                                 switch checkInStatus {
                                     case .checkedIn:
                                         checkedInProfiles.append(profile)
                                     case .checkedOut:
                                         checkedInProfiles.removeAll(where: { $0.id == profile.id })
-                                }
+                                } // switch checkInStatus
+                                isCheckedIn = !isCheckedIn
+                            
                                 print("✅ checked in/out successfully")
                             case .failure(_):
                                 print("😫 checked in/out failed to save")
-                        }
-                    }
-                    
-                }
+                        } // switch result
+                    } // dispatchqueue
+                } // cloudkitmanager
                 
             case .failure(_):
                 print("😫 error fetching record")
