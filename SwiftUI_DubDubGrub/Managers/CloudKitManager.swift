@@ -64,6 +64,26 @@ final class CloudKitManager {
         }
     }
     
+    func getCheckedInProfiles(for locationID: CKRecord.ID, completed: @escaping (Result<[DDGProfile], Error>) -> Void) {
+        let reference = CKRecord.Reference(recordID: locationID, action: .none)
+        // whoever is checked in is equal to our reference (locationID)
+        let predicate = NSPredicate(format: "isCheckedIn == %@", reference)
+        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        
+        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
+            guard let records = records, error == nil else {
+                completed(.failure(error!))
+                return
+            }
+            
+            let profiles = records.map(DDGProfile.init)
+            completed(.success(profiles))
+        }
+        
+    }
+    
+    // MARK: - REUABLE METHODS
+    
     // batch save
     func batchSave(records: [CKRecord], completed: @escaping (Result<[CKRecord], Error>) -> Void) {
         // Create a CKOperation to save our User and Profile Records
