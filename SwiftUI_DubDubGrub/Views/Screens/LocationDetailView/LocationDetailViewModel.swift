@@ -70,6 +70,14 @@ final class LocationDetailViewModel: ObservableObject {
                         
                     case .success(_):
                         // update our checkedInProfiles array
+                        let profile = DDGProfile(record: record)
+                        
+                        switch checkInStatus {
+                            case .checkedIn:
+                                checkedInProfiles.append(profile)
+                            case .checkedOut:
+                                checkedInProfiles.removeAll(where: { $0.id == profile.id })
+                        }
                         print("✅ checked in/out successfully")
                     case .failure(_):
                         print("😫 checked in/out failed to save")
