@@ -84,7 +84,9 @@ struct LocationDetailView: View {
                             })
                         } //scrollview
                     } //else
-                }
+                    
+                    if viewModel.isLoading { LoadingView() }
+                } //zstack
                 
 
                 Spacer()
