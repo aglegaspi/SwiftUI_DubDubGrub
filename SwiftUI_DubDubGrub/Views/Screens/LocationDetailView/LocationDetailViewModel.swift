@@ -32,7 +32,7 @@ final class LocationDetailViewModel: ObservableObject {
         mapItem.name = location.name
         
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
-    }
+    } // getDirectionsToLocation()
     
     func callLocation() {
         guard let url = URL(string: "tel://\(location.phoneNumber)") else {
@@ -44,7 +44,8 @@ final class LocationDetailViewModel: ObservableObject {
             UIApplication.shared.open(url)
         }
         
-    }
+    } // callLocation()
+    
     
     func updateCheckInStatus(to checkInStatus: CheckInStatus) {
         // Retrieve the DDGProfile
@@ -67,22 +68,26 @@ final class LocationDetailViewModel: ObservableObject {
                 
                 // Save the updated profile to CloudKit
                 CloudKitManager.shared.save(record: record) { result in
-                    switch result {
-                        
-                    case .success(_):
-                        // update our checkedInProfiles array
-                        let profile = DDGProfile(record: record)
-                        
-                        switch checkInStatus {
-                            case .checkedIn:
-                                checkedInProfiles.append(profile)
-                            case .checkedOut:
-                                checkedInProfiles.removeAll(where: { $0.id == profile.id })
+                    
+                    DispatchQueue.main.async {
+                        switch result {
+                            
+                            case .success(_):
+                                // update our checkedInProfiles array
+                                let profile = DDGProfile(record: record)
+                                
+                                switch checkInStatus {
+                                    case .checkedIn:
+                                        checkedInProfiles.append(profile)
+                                    case .checkedOut:
+                                        checkedInProfiles.removeAll(where: { $0.id == profile.id })
+                                }
+                                print("✅ checked in/out successfully")
+                            case .failure(_):
+                                print("😫 checked in/out failed to save")
                         }
-                        print("✅ checked in/out successfully")
-                    case .failure(_):
-                        print("😫 checked in/out failed to save")
                     }
+                    
                 }
                 
             case .failure(_):
