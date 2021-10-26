@@ -37,12 +37,31 @@ struct ProfileView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    CharactersRemainView(currentCount: viewModel.bio.count)
+                    HStack {
+                        CharactersRemainView(currentCount: viewModel.bio.count)
+                        Spacer()
+                        
+                        if viewModel.isCheckedIn {
+                            Button {
+                                viewModel.checkOut()
+                            } label: {
+                                Label("Check Out", systemImage: "mappin.and.ellipse")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundColor(.white)
+                                    .padding(10)
+                                    .frame(height: 28)
+                                    .background(Color.grubRed)
+                                    .cornerRadius(8)
+                            }
+                        }
+                    }
+                        
+                        TextEditor(text: $viewModel.bio)
+                            .frame(height: 100)
+                            .overlay(RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+                        
                     
-                    TextEditor(text: $viewModel.bio)
-                        .frame(height: 100)
-                        .overlay(RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
                 }
                 .padding(.horizontal, 20)
                 
@@ -68,7 +87,10 @@ struct ProfileView: View {
             }
             
         } // toolbar
-        .onAppear { viewModel.getProfile() }
+        .onAppear {
+            viewModel.getProfile()
+            viewModel.getCheckedInStatus()
+        }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
@@ -121,13 +143,13 @@ struct CharactersRemainView: View {
         Text("Bio: ")
             .font(.callout)
             .foregroundColor(.secondary)
-            +
-            Text("\(100 - currentCount)")
+        +
+        Text("\(100 - currentCount)")
             .bold()
             .font(.callout)
             .foregroundColor(currentCount <= 100 ? .brandPrimary : Color(.systemPink))
-            +
-            Text(" characters remain")
+        +
+        Text(" characters remain")
             .font(.callout)
             .foregroundColor(.secondary)
     }
