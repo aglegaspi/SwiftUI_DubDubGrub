@@ -13,6 +13,7 @@ enum CheckInStatus { case checkedIn, checkedOut }
 
 final class LocationDetailViewModel: ObservableObject {
     
+    var userHasProfile = false
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isCheckedIn = false
     @Published var isLoading = false
@@ -50,6 +51,7 @@ final class LocationDetailViewModel: ObservableObject {
     
     func getCheckedInStatus() {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else { return }
+        userHasProfile = true
         
         CloudKitManager.shared.fetchRecord(with: profileRecordID) { [self] result in
             DispatchQueue.main.async {
@@ -62,17 +64,17 @@ final class LocationDetailViewModel: ObservableObject {
                         print("is checked in = false and reference is nil")
                     }
                     case .failure(_):
-                        print("failed to fetch record")
+                    alertItem = AlertContext.unableToGetCheckinStatus
                 }
             }
         }
-    }
+    } //getCheckedInStatus
     
     func updateCheckInStatus(to checkInStatus: CheckInStatus) {
         // Retrieve the DDGProfile
         
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else {
-            print("couldn't get profile id")
+            alertItem = AlertContext.unableToGetProfile
             return
         }
         
@@ -80,7 +82,6 @@ final class LocationDetailViewModel: ObservableObject {
             switch result {
             case .success(let record):
                 switch checkInStatus {
-                    
                 case .checkedIn:
                     record[DDGProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
                 case .checkedOut:
@@ -103,16 +104,14 @@ final class LocationDetailViewModel: ObservableObject {
                                         checkedInProfiles.removeAll(where: { $0.id == profile.id })
                                 } // switch checkInStatus
                                 isCheckedIn = !isCheckedIn
-                            
-                                print("✅ checked in/out successfully")
                             case .failure(_):
-                                print("😫 checked in/out failed to save")
+                            alertItem = AlertContext.updateProfileFailure
                         } // switch result
                     } // dispatchqueue
                 } // cloudkitmanager
                 
             case .failure(_):
-                print("😫 error fetching record")
+                alertItem = AlertContext.unableToGetCheckInOrOut
                 
             }
         }
@@ -128,7 +127,7 @@ final class LocationDetailViewModel: ObservableObject {
                 case .success(let profiles):
                     self.checkedInProfiles = profiles
                 case .failure(_):
-                    print("error fetching checkedIn profiles")
+                    alertItem = AlertContext.unableToGetCheckedInProfiles
                 }
                 
                 hideLoadingView()
