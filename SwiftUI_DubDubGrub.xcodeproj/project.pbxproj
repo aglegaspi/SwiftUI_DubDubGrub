@@ -148,6 +148,15 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		EC80AB972729B7F5007578C6 /* LocationListView */ = {
+			isa = PBXGroup;
+			children = (
+				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
+				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
+			);
+			path = LocationListView;
+			sourceTree = "<group>";
+		};
 		EC872B622697AA8B00B876DD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,7 +184,6 @@
 			children = (
 				ECCE7CE326947B930088E52D /* CustomModifiers.swift */,
 				ECCE7CED26947F3D0088E52D /* CustomViews */,
-				ECCE7CEC26947F330088E52D /* Cells */,
 				ECCE7CEB26947EFC0088E52D /* Screens */,
 			);
 			path = Views;
@@ -187,19 +195,11 @@
 				EC293FF627162E8900F39F8F /* LocationDetailView */,
 				EC4F8FDB27025AE300A5FF09 /* ProfileView */,
 				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
-				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
+				EC80AB972729B7F5007578C6 /* LocationListView */,
 				EC56884D26AF010E00501476 /* LocationMapView */,
 				EC5585D926E7D6F400951D70 /* OnboardView.swift */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		ECCE7CEC26947F330088E52D /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		ECCE7CED26947F3D0088E52D /* CustomViews */ = {
