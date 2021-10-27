@@ -10,26 +10,21 @@ import SwiftUI
 struct LocationListView: View {
     
     @EnvironmentObject private var locationManager: LocationManager
+    @StateObject private var viewModel = LocationListViewModel()
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(locationManager.locations, id: \.id) { location in
                     NavigationLink(destination: LocationDetailView(viewModel: LocationDetailViewModel(location: location))) {
-                        LocationCell(location: location)
+                        LocationCell(location: location,
+                                     profiles: viewModel.checkedInProfiles[location.id, default: []])
                         }
                 }
             }
             .navigationTitle("Grub Spots")
             .onAppear {
-                CloudKitManager.shared.getCheckedInProfilesDictionary { result in
-                    switch result {
-                    case .success(let checkedInProfiles):
-                        print(checkedInProfiles)
-                    case .failure(_):
-                        print("error retrieving dictionay")
-                    }
-                }
+                viewModel.getCheckedInProfilesDictionary()
             }
         }
         

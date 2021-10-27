@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LocationCell: View {
-   
+    
     var location: DDGLocation
+    var profiles: [DDGProfile]
     
     var body: some View {
         HStack {
@@ -27,11 +28,20 @@ struct LocationCell: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                 
-                HStack {
-                    ForEach(0..<5) { item in
-                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+                
+                if profiles.isEmpty {
+                    Text("No One Is Checked In")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 2)
+                } else {
+                    HStack {
+                        ForEach(profiles) { profile in
+                            AvatarView(image: profile.convertAvatarImage(), size: 35)
+                        }
                     }
                 }
+                
             } //VStack
             .padding(.leading)
         }
@@ -40,6 +50,6 @@ struct LocationCell: View {
 
 struct LocationCell_Previews: PreviewProvider {
     static var previews: some View {
-        LocationCell(location: DDGLocation(record: MockData.location))
+        LocationCell(location: DDGLocation(record: MockData.location), profiles: [])
     }
 }

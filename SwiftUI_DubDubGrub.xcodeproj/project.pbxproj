@@ -22,6 +22,7 @@
 		EC5585DC26E7D76A00951D70 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5585DB26E7D76A00951D70 /* LogoView.swift */; };
 		EC56884F26AF013200501476 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56884E26AF013200501476 /* LocationMapViewModel.swift */; };
 		EC584D4426EDCA0000878757 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC584D4326EDCA0000878757 /* XDismissButton.swift */; };
+		EC80AB992729B835007578C6 /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80AB982729B835007578C6 /* LocationListViewModel.swift */; };
 		EC872B642697AAA200B876DD /* DDGLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B632697AAA200B876DD /* DDGLocation.swift */; };
 		EC872B662697B1D500B876DD /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B652697B1D500B876DD /* DDGProfile.swift */; };
 		EC872B682697B41000B876DD /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC872B672697B41000B876DD /* MockData.swift */; };
@@ -60,6 +61,7 @@
 		EC5585DB26E7D76A00951D70 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		EC56884E26AF013200501476 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
 		EC584D4326EDCA0000878757 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
+		EC80AB982729B835007578C6 /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 		EC872B632697AAA200B876DD /* DDGLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGLocation.swift; sourceTree = "<group>"; };
 		EC872B652697B1D500B876DD /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
 		EC872B672697B41000B876DD /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
 				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
+				EC80AB982729B835007578C6 /* LocationListViewModel.swift */,
 			);
 			path = LocationListView;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				ECE3B6D0269C830C00A601A9 /* CloudKitManager.swift in Sources */,
 				EC461B992721AE9500EE7365 /* ProfileModalView.swift in Sources */,
 				ECCE7CE626947BE20088E52D /* View+Ext.swift in Sources */,
+				EC80AB992729B835007578C6 /* LocationListViewModel.swift in Sources */,
 				ECB07E4226FD0915002DA5AF /* UIImage+Ext.swift in Sources */,
 				ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */,
 				ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */,
