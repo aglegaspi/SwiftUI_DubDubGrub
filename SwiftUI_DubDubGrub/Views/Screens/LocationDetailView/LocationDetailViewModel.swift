@@ -61,7 +61,6 @@ final class LocationDetailViewModel: ObservableObject {
                             isCheckedIn = reference.recordID == location.id
                     } else {
                         isCheckedIn = false
-                        print("is checked in = false and reference is nil")
                     }
                     case .failure(_):
                     alertItem = AlertContext.unableToGetCheckinStatus
@@ -84,8 +83,10 @@ final class LocationDetailViewModel: ObservableObject {
                 switch checkInStatus {
                 case .checkedIn:
                     record[DDGProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
+                    record[DDGProfile.kIsCheckedInNilCheck] = 1
                 case .checkedOut:
                     record[DDGProfile.kIsCheckedIn] = nil
+                    record[DDGProfile.kIsCheckedInNilCheck] = nil
                 }
                 
                 // Save the updated profile to CloudKit

@@ -55,12 +55,12 @@ struct ProfileView: View {
                             }
                         }
                     }
-                        
-                        TextEditor(text: $viewModel.bio)
-                            .frame(height: 100)
-                            .overlay(RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
-                        
+                    
+                    TextEditor(text: $viewModel.bio)
+                        .frame(height: 100)
+                        .overlay(RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+                    
                     
                 }
                 .padding(.horizontal, 20)
