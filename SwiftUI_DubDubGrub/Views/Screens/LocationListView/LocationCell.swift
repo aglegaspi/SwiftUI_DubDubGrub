@@ -58,3 +58,18 @@ struct LocationCell_Previews: PreviewProvider {
         LocationCell(location: DDGLocation(record: MockData.location), profiles: [])
     }
 }
+
+struct AdditionalProfilesView: View {
+    
+    var number: Int
+    
+    var body: some View {
+        Text("+\(number)")
+            .font(.system(size: 14, weight: .semibold))
+            .frame(width: 35, height: 35)
+            .foregroundColor(.white)
+            .background(Color.brandPrimary)
+            .clipShape(Circle())
+    }
+    
+}
