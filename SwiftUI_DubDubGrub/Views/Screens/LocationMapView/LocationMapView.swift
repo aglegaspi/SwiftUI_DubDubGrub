@@ -23,6 +23,7 @@ struct LocationMapView: View {
                     DDGAnnotation(location: location)
                         .onTapGesture {
                             locationManager.selectedLocation = location
+                            viewModel.isShowingDetailView = true
                         }
                 }
                
@@ -36,9 +37,22 @@ struct LocationMapView: View {
                 Spacer()
             }
         }
-//        .sheet(isPresented: $viewModel.isShowingOnboardView, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {
-//            OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView)
-//        }
+        .sheet(isPresented: $viewModel.isShowingDetailView) {
+            if let selectedLocation = locationManager.selectedLocation {
+                NavigationView {
+                    LocationDetailView(viewModel: LocationDetailViewModel(location: selectedLocation))
+                        .toolbar {
+                            Button("Dismiss") {
+                                viewModel.isShowingDetailView = false
+                            }
+                        }
+                }
+                .accentColor(.brandPrimary)
+            } else {
+                #warning("Create Empty State Sheet or Alert")
+            }
+            
+        }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
