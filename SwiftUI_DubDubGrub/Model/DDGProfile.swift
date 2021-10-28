@@ -9,6 +9,7 @@ import CloudKit
 import UIKit
 
 struct DDGProfile: Identifiable {
+    
     static let kFirstName   = "firstName"
     static let kLastName    = "lastName"
     static let kAvatar      = "avatar"
@@ -35,8 +36,10 @@ struct DDGProfile: Identifiable {
         isCheckedIn = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference
     }
     
+    
     func convertAvatarImage() -> UIImage {
         guard let avatar = avatar else { return PlaceholderImage.square }
         return avatar.convertToUIImage(in: .square)
     }
+    
 }

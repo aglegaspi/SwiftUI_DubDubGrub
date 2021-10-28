@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct XDismissButton: View {
+    
     var body: some View {
         ZStack {
             Circle()
@@ -19,6 +20,7 @@ struct XDismissButton: View {
                 .frame(width: 44, height: 44)
         }
     }
+    
 }
 
 struct XDismissButton_Previews: PreviewProvider {

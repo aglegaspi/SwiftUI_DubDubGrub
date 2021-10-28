@@ -16,8 +16,8 @@ final class CloudKitManager {
     var userRecord: CKRecord?
     var profileRecordID: CKRecord.ID?
     
+    
     func getUserRecord() {
-        
         CKContainer.default().fetchUserRecordID { recordID, error in
             guard let recordID = recordID, error == nil else {
                 print(error!.localizedDescription)
@@ -39,9 +39,9 @@ final class CloudKitManager {
         }
     }
     
+    
     // communication with CloudKit get locations, fetch users checking in, save profile, download profile
     func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
-        
         let sortDescriptor = NSSortDescriptor(key: DDGLocation.kName, ascending: true)
         
         // query the record type "location" and give me all the locations
@@ -60,9 +60,9 @@ final class CloudKitManager {
             let locations = records.map(DDGLocation.init)
             
             completed(.success(locations))
-            
         }
     }
+    
     
     func getCheckedInProfiles(for locationID: CKRecord.ID, completed: @escaping (Result<[DDGProfile], Error>) -> Void) {
         let reference = CKRecord.Reference(recordID: locationID, action: .none)
@@ -79,8 +79,8 @@ final class CloudKitManager {
             let profiles = records.map(DDGProfile.init)
             completed(.success(profiles))
         }
-        
     }
+    
     
     func getCheckedInProfilesDictionary(completed: @escaping (Result<[CKRecord.ID : [DDGProfile]], Error>) -> Void) {
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
@@ -104,6 +104,7 @@ final class CloudKitManager {
         }
         CKContainer.default().publicCloudDatabase.add(operation)
     }
+    
     
     func getCheckedInProfilesCount(completed: @escaping (Result<[CKRecord.ID : Int], Error>) -> Void) {
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
@@ -132,9 +133,8 @@ final class CloudKitManager {
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    // MARK: - REUABLE METHODS
     
-    // batch save
+    // MARK: - REUABLE METHODS
     func batchSave(records: [CKRecord], completed: @escaping (Result<[CKRecord], Error>) -> Void) {
         // Create a CKOperation to save our User and Profile Records
         let operation = CKModifyRecordsOperation(recordsToSave: records)
@@ -145,12 +145,11 @@ final class CloudKitManager {
                 completed(.failure(error!))
                 return
             }
-            
             completed(.success(savedRecords))
         }
-        
         CKContainer.default().publicCloudDatabase.add(operation)
-    } // batchSave
+    } //batchSave
+    
     
     func save(record: CKRecord, completed: @escaping (Result<CKRecord, Error>) -> Void) {
         CKContainer.default().publicCloudDatabase.save(record) { record, error in
@@ -161,7 +160,8 @@ final class CloudKitManager {
             
             completed(.success(record))
         }
-    }
+    } //save
+    
     
     func fetchRecord(with id: CKRecord.ID, completed: @escaping (Result<CKRecord, Error>) -> Void) {
         // fetch record based on ID
@@ -172,5 +172,7 @@ final class CloudKitManager {
             }
             completed(.success(record))
         }
-    }
+    } //fetchRecords
+    
+    
 }

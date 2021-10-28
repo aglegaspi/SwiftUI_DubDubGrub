@@ -114,8 +114,8 @@
 		EC293FF627162E8900F39F8F /* LocationDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				EC8E6A06268BD91000492B3D /* LocationDetailView.swift */,
 				EC293FF727162EA800F39F8F /* LocationDetailViewModel.swift */,
+				EC8E6A06268BD91000492B3D /* LocationDetailView.swift */,
 				EC461B982721AE9500EE7365 /* ProfileModalView.swift */,
 			);
 			path = LocationDetailView;
@@ -132,8 +132,8 @@
 		EC4F8FDB27025AE300A5FF09 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
-				EC0A7D212684AE5C00553858 /* ProfileView.swift */,
 				EC4F8FDC27025B2A00A5FF09 /* ProfileViewModel.swift */,
+				EC0A7D212684AE5C00553858 /* ProfileView.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -141,8 +141,8 @@
 		EC56884D26AF010E00501476 /* LocationMapView */ = {
 			isa = PBXGroup;
 			children = (
-				EC0A7D1B2684AE2A00553858 /* LocationMapView.swift */,
 				EC56884E26AF013200501476 /* LocationMapViewModel.swift */,
+				EC0A7D1B2684AE2A00553858 /* LocationMapView.swift */,
 			);
 			path = LocationMapView;
 			sourceTree = "<group>";
@@ -159,9 +159,9 @@
 		EC80AB972729B7F5007578C6 /* LocationListView */ = {
 			isa = PBXGroup;
 			children = (
-				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
-				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
 				EC80AB982729B835007578C6 /* LocationListViewModel.swift */,
+				EC0A7D1E2684AE4900553858 /* LocationListView.swift */,
+				ECCE7CDF269476B60088E52D /* LocationCell.swift */,
 			);
 			path = LocationListView;
 			sourceTree = "<group>";
@@ -188,8 +188,8 @@
 		EC8A99DE272A3345008CDC61 /* AppTabView */ = {
 			isa = PBXGroup;
 			children = (
-				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
 				EC8A99DF272A3385008CDC61 /* AppTabViewModel.swift */,
+				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
 			);
 			path = AppTabView;
 			sourceTree = "<group>";
@@ -219,10 +219,10 @@
 		ECCE7CEB26947EFC0088E52D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				EC293FF627162E8900F39F8F /* LocationDetailView */,
-				EC4F8FDB27025AE300A5FF09 /* ProfileView */,
 				EC8A99DE272A3345008CDC61 /* AppTabView */,
 				EC80AB972729B7F5007578C6 /* LocationListView */,
+				EC293FF627162E8900F39F8F /* LocationDetailView */,
+				EC4F8FDB27025AE300A5FF09 /* ProfileView */,
 				EC56884D26AF010E00501476 /* LocationMapView */,
 				EC5585D926E7D6F400951D70 /* OnboardView.swift */,
 			);

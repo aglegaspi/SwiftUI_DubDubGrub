@@ -18,10 +18,8 @@ final class AppTabViewModel: NSObject, ObservableObject {
     // constant for userdefault key
     var kHasSeenOnboardView = "hasSeenOnboardView"
     // computed property for onboardview
-    var hasSeenOnboardView: Bool {
-        return UserDefaults.standard.bool(forKey: kHasSeenOnboardView)
-    }
-    
+    var hasSeenOnboardView: Bool { return UserDefaults.standard.bool(forKey: kHasSeenOnboardView) }
+     
     //checks if the user's seen onboarding screen. false - load view. true - check location services.
     func runStartupChecks() {
         if !hasSeenOnboardView {
@@ -31,6 +29,7 @@ final class AppTabViewModel: NSObject, ObservableObject {
             checkIfLocationServicesIsEnabled()
         }
     }
+    
     
     // check if Location Services are enable and create the instance
     func checkIfLocationServicesIsEnabled() {
@@ -43,6 +42,7 @@ final class AppTabViewModel: NSObject, ObservableObject {
             alertItem = AlertContext.locationDisabled
         }
     }
+    
     
     // check for app specific permission
     private func checkLocationAuthorization() {

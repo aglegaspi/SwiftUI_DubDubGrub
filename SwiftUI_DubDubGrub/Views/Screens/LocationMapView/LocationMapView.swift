@@ -60,11 +60,7 @@ struct LocationMapView: View {
                   dismissButton: alertItem.dissmissButton)
         })
         .onAppear {
-            
-            if locationManager.locations.isEmpty {
-                viewModel.getLocations(for: locationManager)
-            }
-            
+            if locationManager.locations.isEmpty { viewModel.getLocations(for: locationManager) }
             viewModel.getCheckedInCount()
         }
         

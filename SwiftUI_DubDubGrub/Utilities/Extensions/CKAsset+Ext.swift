@@ -9,6 +9,7 @@ import CloudKit
 import UIKit
 
 extension CKAsset {
+    
     func convertToUIImage(in dimension: ImageDimension) -> UIImage {
         let placeholder = ImageDimension.getPlaceholder(for: dimension)
         
@@ -20,5 +21,6 @@ extension CKAsset {
         } catch {
             return placeholder
         }
-    }
+    } //convertToUIImage
+    
 }

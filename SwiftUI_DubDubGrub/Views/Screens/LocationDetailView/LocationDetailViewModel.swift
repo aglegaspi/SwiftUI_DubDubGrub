@@ -20,14 +20,11 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isShowingProfileModal: Bool = false
     
-    
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    
     var location: DDGLocation
     
-    init(location: DDGLocation) {
-        self.location = location
-    }
+    init(location: DDGLocation) { self.location = location }
+    
     
     func getDirectionsToLocation() {
         let placemark = MKPlacemark(coordinate: location.location.coordinate)
@@ -36,6 +33,7 @@ final class LocationDetailViewModel: ObservableObject {
         
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     } // getDirectionsToLocation()
+    
     
     func callLocation() {
         guard let url = URL(string: "tel://\(location.phoneNumber)") else {
@@ -49,6 +47,7 @@ final class LocationDetailViewModel: ObservableObject {
         
     } // callLocation()
     
+    
     func getCheckedInStatus() {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else { return }
         userHasProfile = true
@@ -56,18 +55,19 @@ final class LocationDetailViewModel: ObservableObject {
         CloudKitManager.shared.fetchRecord(with: profileRecordID) { [self] result in
             DispatchQueue.main.async {
                 switch result {
-                    case .success(let record):
+                case .success(let record):
                     if let reference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference {
-                            isCheckedIn = reference.recordID == location.id
+                        isCheckedIn = reference.recordID == location.id
                     } else {
                         isCheckedIn = false
                     }
-                    case .failure(_):
+                case .failure(_):
                     alertItem = AlertContext.unableToGetCheckinStatus
                 }
             }
         }
     } //getCheckedInStatus
+    
     
     func updateCheckInStatus(to checkInStatus: CheckInStatus) {
         // Retrieve the DDGProfile
@@ -94,18 +94,18 @@ final class LocationDetailViewModel: ObservableObject {
                     
                     DispatchQueue.main.async {
                         switch result {
-                            case .success(let record):
-                                // update our checkedInProfiles array
-                                let profile = DDGProfile(record: record)
+                        case .success(let record):
+                            // update our checkedInProfiles array
+                            let profile = DDGProfile(record: record)
                             
-                                switch checkInStatus {
-                                    case .checkedIn:
-                                        checkedInProfiles.append(profile)
-                                    case .checkedOut:
-                                        checkedInProfiles.removeAll(where: { $0.id == profile.id })
-                                } // switch checkInStatus
-                                isCheckedIn = !isCheckedIn
-                            case .failure(_):
+                            switch checkInStatus {
+                            case .checkedIn:
+                                checkedInProfiles.append(profile)
+                            case .checkedOut:
+                                checkedInProfiles.removeAll(where: { $0.id == profile.id })
+                            } // switch checkInStatus
+                            isCheckedIn = !isCheckedIn
+                        case .failure(_):
                             alertItem = AlertContext.updateProfileFailure
                         } // switch result
                     } // dispatchqueue
@@ -117,6 +117,7 @@ final class LocationDetailViewModel: ObservableObject {
             }
         }
     } // updateCheckInStatus()
+    
     
     // Create a reference to the locations
     func getCheckedInProfiles() {
