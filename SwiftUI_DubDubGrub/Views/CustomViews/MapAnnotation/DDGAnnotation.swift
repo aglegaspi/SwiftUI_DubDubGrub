@@ -10,13 +10,14 @@ import SwiftUI
 struct DDGAnnotation: View {
     
     var location: DDGLocation
+    var number: Int
     
     var body: some View {
         VStack {
             ZStack{
                 MapBalloon()
-                .frame(width: 100, height: 70)
-                .foregroundColor(.brandPrimary)
+                    .frame(width: 100, height: 70)
+                    .foregroundColor(.brandPrimary)
                 
                 Image(uiImage: location.createSquareImage())
                     .resizable()
@@ -24,13 +25,15 @@ struct DDGAnnotation: View {
                     .clipShape(Circle())
                     .offset(y: -11)
                 
-                Text("99")
-                    .font(.system(size: 11, weight: .bold))
-                    .frame(width: 26, height: 18)
-                    .background(Color.grubRed)
-                    .foregroundColor(.white)
-                    .clipShape(Capsule())
-                    .offset(x: 20, y: -32)
+                if number > 0 {
+                    Text("\(min(number, 99))")
+                        .font(.system(size: 11, weight: .bold))
+                        .frame(width: 26, height: 18)
+                        .background(Color.grubRed)
+                        .foregroundColor(.white)
+                        .clipShape(Capsule())
+                        .offset(x: 20, y: -32)
+                }
             }
             
             Text("\(location.name)")
@@ -42,7 +45,7 @@ struct DDGAnnotation: View {
 
 struct DDGAnnotation_Previews: PreviewProvider {
     static var previews: some View {
-        DDGAnnotation(location: DDGLocation(record: MockData.location))
+        DDGAnnotation(location: DDGLocation(record: MockData.location), number: 33)
     }
 }
 
