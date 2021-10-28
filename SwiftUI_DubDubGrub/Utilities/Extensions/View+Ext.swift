@@ -13,6 +13,13 @@ extension View {
         self.modifier(ProfileNameText())
     }
     
+    
+    func playHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
+    
+    
     // dismissed the keyboard when this function is called
     func dismissKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
