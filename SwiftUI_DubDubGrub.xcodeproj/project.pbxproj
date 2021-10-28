@@ -183,6 +183,14 @@
 			path = MapAnnotation;
 			sourceTree = "<group>";
 		};
+		EC8A99DE272A3345008CDC61 /* AppTabView */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
+			);
+			path = AppTabView;
+			sourceTree = "<group>";
+		};
 		ECCE7CE926947EE10088E52D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +218,7 @@
 			children = (
 				EC293FF627162E8900F39F8F /* LocationDetailView */,
 				EC4F8FDB27025AE300A5FF09 /* ProfileView */,
-				EC0A7D182684ADEF00553858 /* AppTabView.swift */,
+				EC8A99DE272A3345008CDC61 /* AppTabView */,
 				EC80AB972729B7F5007578C6 /* LocationListView */,
 				EC56884D26AF010E00501476 /* LocationMapView */,
 				EC5585D926E7D6F400951D70 /* OnboardView.swift */,

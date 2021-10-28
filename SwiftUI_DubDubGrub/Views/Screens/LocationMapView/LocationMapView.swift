@@ -21,6 +21,9 @@ struct LocationMapView: View {
                 MapAnnotation(coordinate: location.location.coordinate,
                               anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
                     DDGAnnotation(location: location)
+                        .onTapGesture {
+                            locationManager.selectedLocation = location
+                        }
                 }
                
             }
