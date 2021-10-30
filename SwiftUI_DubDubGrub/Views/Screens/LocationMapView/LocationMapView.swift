@@ -22,7 +22,7 @@ struct LocationMapView: View {
                               anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
                     DDGAnnotation(location: location,
                                   number: viewModel.checkedInProfiles[location.id, default: 0])
-                        .accessibilityLabel(Text("Map Pin \(location.name),  \(viewModel.checkedInProfiles[location.id, default: 0]) users checked in"))
+                        .accessibilityLabel(Text("Map Pin \(location.name),  \(viewModel.checkedInProfiles[location.id, default: 0]) users checked in")) // refactor this line
                         .onTapGesture {
                             locationManager.selectedLocation = location
                             viewModel.isShowingDetailView = true

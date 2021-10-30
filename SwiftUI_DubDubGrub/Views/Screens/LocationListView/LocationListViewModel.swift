@@ -24,4 +24,11 @@ final class LocationListViewModel: ObservableObject {
             
         } //CloudKitManager
     } //getCheckedInProfilesDictionary
+    
+    
+    func countVoiceOverSummary(for location: DDGLocation) -> String {
+        let count = checkedInProfiles[location.id, default: []].count
+        
+        return count == 1 ? "\(count) person checked in" : "\(count) people checked in"
+    }
 }

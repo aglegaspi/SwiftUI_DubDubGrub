@@ -19,6 +19,8 @@ struct LocationListView: View {
                     NavigationLink(destination: LocationDetailView(viewModel: LocationDetailViewModel(location: location))) {
                         LocationCell(location: location,
                                      profiles: viewModel.checkedInProfiles[location.id, default: []])
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(Text("\(location.name),  \(viewModel.countVoiceOverSummary(for: location))"))
                         }
                 }
             }
