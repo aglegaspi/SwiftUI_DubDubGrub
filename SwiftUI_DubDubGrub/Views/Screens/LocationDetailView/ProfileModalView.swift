@@ -29,10 +29,12 @@ struct ProfileModalView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                     .foregroundColor(.secondary)
+                    .accessibilityLabel(Text("Works at \(profile.companyName)"))
                 
                 Text(profile.bio)
                     .lineLimit(3)
                     .padding()
+                    .accessibilityLabel(Text("Bio, \(profile.bio)"))
             }
             .frame(width: 300, height: 230)
             .background(Color(.secondarySystemBackground))
@@ -54,6 +56,7 @@ struct ProfileModalView: View {
                 .clipShape(Circle())
                 .shadow(color: /*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/.opacity(0.5), radius: 4, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 0.6)
                 .offset(y: -140)
+                .accessibilityHidden(true)
         }
     }
 }
