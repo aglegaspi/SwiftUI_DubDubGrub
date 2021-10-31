@@ -23,7 +23,7 @@ struct MockData {
     
     static var chipotle: CKRecord {
             let record                          = CKRecord(recordType: RecordType.location,
-                                                           recordID: CKRecord.ID(recordName: "BD731330-6FAF-A3DE-2592-677F9A62BBCA"))
+                                                           recordID: CKRecord.ID(recordName: "87A6D317-FEC1-4A81-D141-71BF4117D01A"))
             record[DDGLocation.kName]           = "Chipotle"
             record[DDGLocation.kAddress]        = "1 S Market St Ste 40"
             record[DDGLocation.kDescription]    = "Our local San Jose One South Market Chipotle Mexican Grill is cultivating a better world by serving responsibly sourced, classically-cooked, real food."

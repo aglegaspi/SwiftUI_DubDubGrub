@@ -137,7 +137,29 @@ struct LocationDetailView: View {
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.location)) )
+        
+        NavigationView {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
+        }
+        .environment(\.sizeCategory, .extraSmall)
+        
+        NavigationView {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
+        }
+        
+        NavigationView {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
+        }
+        .preferredColorScheme(.dark)
+        .environment(\.sizeCategory, .extraExtraExtraLarge)
+        
+        NavigationView {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
+        }
+        .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+        
+    
+        
     }
 }
 
