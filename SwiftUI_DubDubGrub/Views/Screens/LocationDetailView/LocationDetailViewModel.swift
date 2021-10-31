@@ -79,13 +79,13 @@ extension LocationDetailView {
         
         
         func updateCheckInStatus(to checkInStatus: CheckInStatus) {
-            // Retrieve the DDGProfile
-            
+            // Retrieve the DDGProfilw
             guard let profileRecordID = CloudKitManager.shared.profileRecordID else {
                 alertItem = AlertContext.unableToGetProfile
                 return
             }
             
+            showLoadingView()
             CloudKitManager.shared.fetchRecord(with: profileRecordID) { [self] result in
                 switch result {
                 case .success(let record):
@@ -100,20 +100,20 @@ extension LocationDetailView {
                     
                     // Save the updated profile to CloudKit
                     CloudKitManager.shared.save(record: record) { [self] result in
-                        
+                        hideLoadingView()
                         DispatchQueue.main.async {
                             switch result {
                             case .success(let record):
+                                HapticManager.playSuccess()
                                 // update our checkedInProfiles array
                                 let profile = DDGProfile(record: record)
-                                
                                 switch checkInStatus {
                                 case .checkedIn:
                                     checkedInProfiles.append(profile)
                                 case .checkedOut:
                                     checkedInProfiles.removeAll(where: { $0.id == profile.id })
                                 } // switch checkInStatus
-                                isCheckedIn = !isCheckedIn
+                                isCheckedIn.toggle()
                             case .failure(_):
                                 alertItem = AlertContext.updateProfileFailure
                             } // switch result
@@ -121,6 +121,7 @@ extension LocationDetailView {
                     } // cloudkitmanager
                     
                 case .failure(_):
+                    hideLoadingView()
                     alertItem = AlertContext.unableToGetCheckInOrOut
                     
                 }
@@ -147,7 +148,7 @@ extension LocationDetailView {
         } // getCheckedInProfiles()
         
         
-        func show(profile: DDGProfile, in sizeCategory: ContentSizeCategory) {
+        func show(_ profile: DDGProfile, in sizeCategory: ContentSizeCategory) {
             selectedProfile = profile
             if sizeCategory >= .accessibilityLarge {
                 isShowingProfileSheet = true

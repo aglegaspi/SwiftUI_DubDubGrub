@@ -45,6 +45,7 @@
 		ECE875EB267F6EF4000CEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875EA267F6EF4000CEA5E /* Assets.xcassets */; };
 		ECE875EE267F6EF4000CEA5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */; };
 		ECF382DF272E492E00ECF95C /* ProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */; };
+		ECF382E1272F30BC00ECF95C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF382E0272F30BA00ECF95C /* HapticManager.swift */; };
 		ECF8C6C6270136DE00962517 /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECE875EF267F6EF4000CEA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSheetView.swift; sourceTree = "<group>"; };
+		ECF382E0272F30BA00ECF95C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +262,7 @@
 			children = (
 				ECE3B6CF269C830C00A601A9 /* CloudKitManager.swift */,
 				ECE8753926DFE442006ECB70 /* LocationManager.swift */,
+				ECF382E0272F30BA00ECF95C /* HapticManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				EC5585DA26E7D6F400951D70 /* OnboardView.swift in Sources */,
 				ECC0126E26E0FA7E00B3E1E0 /* CKAsset+Ext.swift in Sources */,
 				EC293FF827162EA800F39F8F /* LocationDetailViewModel.swift in Sources */,
+				ECF382E1272F30BC00ECF95C /* HapticManager.swift in Sources */,
 				ECCE7CE426947B930088E52D /* CustomModifiers.swift in Sources */,
 				EC0A7D1C2684AE2A00553858 /* LocationMapView.swift in Sources */,
 				EC4F8FDD27025B2A00A5FF09 /* ProfileViewModel.swift in Sources */,

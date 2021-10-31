@@ -57,12 +57,12 @@ struct LocationDetailView: View {
                         if viewModel.userHasProfile != false {
                             Button {
                                 viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
-                                playHaptic()
                             } label: {
                                 LocationActionButton(color: viewModel.isCheckedIn ? .grubRed : .brandPrimary, imageName: viewModel.isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark")
                                     .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" : "Check in to location"))
 
                             }
+                            .disabled(viewModel.isLoading)
                         }
                         
                     }
@@ -95,7 +95,7 @@ struct LocationDetailView: View {
                                         .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.show(profile: profile, in: sizeCategory)
+                                            viewModel.show(profile, in: sizeCategory)
                                         }
                                 }
                                 
