@@ -37,7 +37,7 @@ struct LocationCell: View {
                     HStack {
                         ForEach(profiles.indices, id: \.self) { index in
                             if index <= 3 || (index == 4 && profiles.count == 5) {
-                                AvatarView(image: profiles[index].convertAvatarImage(), size: 35)
+                                AvatarView(image: profiles[index].avatarImage, size: 35)
                             } else if index == 4 {
                                 AdditionalProfilesView(number: min(profiles.count - 4,99))
                             }

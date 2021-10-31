@@ -189,7 +189,7 @@ struct FirstNameAvatarView: View {
     
     var body: some View {
         VStack {
-            AvatarView(image: profile.convertAvatarImage(),
+            AvatarView(image: profile.avatarImage,
                        size: sizeCategory >= .accessibilityLarge ? 100: 64)
             
             Text(profile.firstName)

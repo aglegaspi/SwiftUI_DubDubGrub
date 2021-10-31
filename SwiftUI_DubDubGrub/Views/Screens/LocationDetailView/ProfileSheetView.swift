@@ -17,7 +17,7 @@ struct ProfileSheetView: View {
         
         ScrollView {
             VStack(spacing: 20) {
-                Image(uiImage: profile.convertAvatarImage())
+                Image(uiImage: profile.avatarImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 180, height: 180)
