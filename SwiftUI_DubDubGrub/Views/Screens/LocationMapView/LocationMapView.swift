@@ -18,24 +18,22 @@ struct LocationMapView: View {
         
         ZStack(alignment: .top) {
             // Map takes in a parameter of a region, an array of annotion item (locations), then it's going to iterate through those locations, then drop a map pin at the coordinate, and make it the color provided.
-            Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
-                MapAnnotation(coordinate: location.location.coordinate,
-                              anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
+            Map(coordinateRegion: $viewModel.region,
+                showsUserLocation: true,
+                annotationItems: locationManager.locations) { location in
+                MapAnnotation(coordinate: location.location.coordinate, anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
                     DDGAnnotation(location: location,
                                   number: viewModel.checkedInProfiles[location.id, default: 0])
-                        .accessibilityLabel(Text("Map Pin \(location.name),  \(viewModel.checkedInProfiles[location.id, default: 0]) users checked in")) // refactor this line
                         .onTapGesture {
                             locationManager.selectedLocation = location
                             viewModel.isShowingDetailView = true
                         }
                 }
-               
             }
             .accentColor(.grubRed)
             .ignoresSafeArea()
             
             LogoView(frameWidth: 125).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
             if let selectedLocation = locationManager.selectedLocation {
