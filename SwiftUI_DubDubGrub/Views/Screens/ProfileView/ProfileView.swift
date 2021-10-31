@@ -105,7 +105,7 @@ struct ProfileView: View {
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
-                  dismissButton: alertItem.dissmissButton)
+                  dismissButton: alertItem.dismissButton)
         }) // alert
         .sheet(isPresented: $viewModel.isShowingPhotoPicker) {
             // when picture is selected it'll be set to avatar

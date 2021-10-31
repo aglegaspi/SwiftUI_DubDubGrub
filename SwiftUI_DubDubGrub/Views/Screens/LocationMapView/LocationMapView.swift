@@ -56,7 +56,7 @@ struct LocationMapView: View {
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
-                  dismissButton: alertItem.dissmissButton)
+                  dismissButton: alertItem.dismissButton)
         })
         .onAppear {
             if locationManager.locations.isEmpty { viewModel.getLocations(for: locationManager) }
