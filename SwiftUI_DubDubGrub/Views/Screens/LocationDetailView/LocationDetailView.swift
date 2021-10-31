@@ -150,20 +150,13 @@ struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
         
         NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
+            LocationDetailView(viewModel: LocationDetailView.LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
         }
-        .preferredColorScheme(.dark)
-        .environment(\.sizeCategory, .extraExtraExtraLarge)
-        
-        NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
-        }
-        .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
          
     }
 }
 
-struct LocationActionButton: View {
+fileprivate struct LocationActionButton: View {
     
     var color: Color
     var imageName: String
@@ -182,7 +175,7 @@ struct LocationActionButton: View {
     }
 }
 
-struct FirstNameAvatarView: View {
+fileprivate struct FirstNameAvatarView: View {
     
     var profile: DDGProfile
     @Environment(\.sizeCategory) var sizeCategory
@@ -200,7 +193,7 @@ struct FirstNameAvatarView: View {
     }
 }
 
-struct BannerImageView: View {
+fileprivate struct BannerImageView: View {
     
     var image: UIImage
     
@@ -213,7 +206,7 @@ struct BannerImageView: View {
     }
 }
 
-struct DescriptionView: View {
+fileprivate struct DescriptionView: View {
     
     var text: String
     
