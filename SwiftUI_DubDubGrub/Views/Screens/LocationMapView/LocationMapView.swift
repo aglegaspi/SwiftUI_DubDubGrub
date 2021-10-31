@@ -16,7 +16,7 @@ struct LocationMapView: View {
     
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: .top) {
             // Map takes in a parameter of a region, an array of annotion item (locations), then it's going to iterate through those locations, then drop a map pin at the coordinate, and make it the color provided.
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapAnnotation(coordinate: location.location.coordinate,
@@ -34,12 +34,8 @@ struct LocationMapView: View {
             .accentColor(.grubRed)
             .ignoresSafeArea()
             
-            VStack {
-                LogoView(frameWidth: 125)
-                    .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                    //.accessibilityHidden(true)
-                Spacer()
-            }
+            LogoView(frameWidth: 125).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
             if let selectedLocation = locationManager.selectedLocation {
