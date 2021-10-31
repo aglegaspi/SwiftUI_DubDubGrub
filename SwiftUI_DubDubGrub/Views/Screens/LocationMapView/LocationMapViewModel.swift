@@ -39,10 +39,10 @@ extension LocationMapView {
             CloudKitManager.shared.getCheckedInProfilesCount { result in
                 DispatchQueue.main.async {
                     switch result {
-                    case .success(let checkedInProfiles):
-                        self.checkedInProfiles = checkedInProfiles
+                    case .success(let retrievedCheckedInProfiles):
+                        self.checkedInProfiles = retrievedCheckedInProfiles
                     case .failure(_):
-                        print("no count available")
+                        self.alertItem = AlertContext.checkedInCount
                     }
                 }
             }
