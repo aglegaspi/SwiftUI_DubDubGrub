@@ -11,15 +11,14 @@ import UIKit
 extension CKAsset {
     
     func convertToUIImage(in dimension: ImageDimension) -> UIImage {
-        let placeholder = ImageDimension.getPlaceholder(for: dimension)
         
-        guard let imageURL = self.fileURL else { return placeholder }
+        guard let imageURL = self.fileURL else { return dimension.placeholder }
         
         do {
             let data = try Data(contentsOf: imageURL)
-            return UIImage(data: data) ?? placeholder
+            return UIImage(data: data) ?? dimension.placeholder
         } catch {
-            return placeholder
+            return dimension.placeholder
         }
     } //convertToUIImage
     
