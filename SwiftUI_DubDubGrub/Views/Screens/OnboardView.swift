@@ -50,7 +50,7 @@ struct OnboardView_Previews: PreviewProvider {
     }
 }
 
-struct OnboardInfoView: View {
+fileprivate struct OnboardInfoView: View {
     
     var imageName: String
     var title: String
