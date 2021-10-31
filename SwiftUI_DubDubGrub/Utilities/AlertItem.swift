@@ -41,6 +41,13 @@ struct AlertContext {
                                                 message: Text("Unable to get number of people in each location. Check internet connection"),
                                                 dismissButton: .default(Text("OK")))
     
+    
+    //MARK: - LocationListView Errors
+    static let unableToAllCheckedInProfiles = AlertItem(title: Text("Server Error"),
+                                                message: Text("Unable to get all checked in profiles at this location at this time."),
+                                                dismissButton: .default(Text("OK")))
+    
+    
     //MARK: - ProfileView Errors
     static let invalidProfile = AlertItem(title: Text("Invalid Profile"),
                                                 message: Text("All fields are required as well as a profile photo. Your bio must be < 100 characters. \n Please try again"),
@@ -69,6 +76,7 @@ struct AlertContext {
     static let updateProfileFailure = AlertItem(title: Text("Failed To Update Profile"),
                                                 message: Text("Unable to update your profile. \n Please Try again"),
                                                 dismissButton: .default(Text("OK")))
+    
     
     //MARK: - LocationDetailView Errors
     static let invalidPhoneNumber = AlertItem(title: Text("Invalid Phone Number"),
