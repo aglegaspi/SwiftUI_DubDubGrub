@@ -45,5 +45,13 @@ final class LocationMapViewModel: ObservableObject {
         }
     }
     
+    @ViewBuilder func createLocationDetailView(for location: DDGLocation, in sizeCategory: ContentSizeCategory) -> some View {
+        if sizeCategory >= .accessibilityLarge {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location)).embedInScrollView()
+        } else {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+        }
+    }
+    
 }
 

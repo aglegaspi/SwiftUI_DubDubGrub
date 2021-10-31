@@ -18,15 +18,19 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var isCheckedIn = false
     @Published var isLoading = false
     @Published var alertItem: AlertItem?
+    @Published var isShowingProfileSheet: Bool = false
     @Published var isShowingProfileModal: Bool = false
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var location: DDGLocation
-    var selectedProfile: DDGProfile? {
-        didSet { isShowingProfileModal = true }
-    }
+    var selectedProfile: DDGProfile?
     
     init(location: DDGLocation) { self.location = location }
+    
+    
+    func determineColumns(for sizeCategory: ContentSizeCategory) -> [GridItem] {
+        let numberOfColumns = sizeCategory >= .accessibilityLarge ? 2 : 3
+        return Array(repeating: GridItem(.flexible()), count: numberOfColumns)
+    }
     
     
     func getDirectionsToLocation() {
@@ -139,6 +143,16 @@ final class LocationDetailViewModel: ObservableObject {
             }
         }
     } // getCheckedInProfiles()
+    
+    
+    func show(profile: DDGProfile, in sizeCategory: ContentSizeCategory) {
+        selectedProfile = profile
+        if sizeCategory >= .accessibilityLarge {
+            isShowingProfileSheet = true
+        } else {
+            isShowingProfileModal = true
+        }
+    }
     
     private func showLoadingView() { isLoading = true }
     private func hideLoadingView() { isLoading = false }

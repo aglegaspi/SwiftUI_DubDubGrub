@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationDetailView: View {
     
     @ObservedObject var viewModel: LocationDetailViewModel
+    @Environment(\.sizeCategory) var sizeCategory
     
     var body: some View {
         ZStack {
@@ -85,7 +86,7 @@ struct LocationDetailView: View {
                             .padding(.top, 30)
                     } else {
                         ScrollView {
-                            LazyVGrid(columns: viewModel.columns, content: {
+                            LazyVGrid(columns: viewModel.determineColumns(for: sizeCategory), content: {
                                 
                                 ForEach(viewModel.checkedInProfiles) { profile in
                                     FirstNameAvatarView(profile: profile)
@@ -94,7 +95,7 @@ struct LocationDetailView: View {
                                         .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.selectedProfile = profile
+                                            viewModel.show(profile: profile, in: sizeCategory)
                                         }
                                 }
                                 
@@ -124,7 +125,17 @@ struct LocationDetailView: View {
                     .zIndex(2)
             }
         }
-        .onAppear { viewModel.getCheckedInProfiles(); viewModel.getCheckedInStatus() }
+        .onAppear {
+            viewModel.getCheckedInProfiles()
+            viewModel.getCheckedInStatus()
+        }
+        .sheet(isPresented: $viewModel.isShowingProfileSheet) {
+            NavigationView {
+                ProfileSheetView(profile: viewModel.selectedProfile!)
+                    .toolbar { Button("Dismiss", action: { viewModel.isShowingProfileSheet = false }) }
+            }
+            .accentColor(.brandPrimary)
+        }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
@@ -141,15 +152,6 @@ struct LocationDetailView_Previews: PreviewProvider {
         NavigationView {
             LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
         }
-        .environment(\.sizeCategory, .extraSmall)
-        
-        NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
-        }
-        
-        NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
-        }
         .preferredColorScheme(.dark)
         .environment(\.sizeCategory, .extraExtraExtraLarge)
         
@@ -157,9 +159,7 @@ struct LocationDetailView_Previews: PreviewProvider {
             LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
         }
         .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
-        
-    
-        
+         
     }
 }
 
@@ -185,10 +185,12 @@ struct LocationActionButton: View {
 struct FirstNameAvatarView: View {
     
     var profile: DDGProfile
+    @Environment(\.sizeCategory) var sizeCategory
     
     var body: some View {
         VStack {
-            AvatarView(image: profile.convertAvatarImage(), size: 64)
+            AvatarView(image: profile.convertAvatarImage(),
+                       size: sizeCategory >= .accessibilityLarge ? 100: 64)
             
             Text(profile.firstName)
                 .bold()
@@ -217,9 +219,8 @@ struct DescriptionView: View {
     
     var body: some View {
         Text(text)
-            .lineLimit(3)
             .minimumScaleFactor(0.75)
-            .frame(height: 70)
+            .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal)
     }
 }

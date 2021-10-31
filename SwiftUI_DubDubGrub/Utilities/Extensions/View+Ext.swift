@@ -20,6 +20,15 @@ extension View {
     }
     
     
+    func embedInScrollView() -> some View {
+        GeometryReader { geometry in
+            ScrollView {
+                frame(minHeight: geometry.size.height,
+                      maxHeight: .infinity)
+            }
+        }
+    }
+    
     // dismissed the keyboard when this function is called
     func dismissKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

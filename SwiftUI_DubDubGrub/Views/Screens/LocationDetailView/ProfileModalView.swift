@@ -44,7 +44,6 @@ struct ProfileModalView: View {
                     withAnimation {
                         isShowingProfileModal = false
                     }
-                    
                 } label: {
                     XDismissButton()
                 }, alignment: .topTrailing )

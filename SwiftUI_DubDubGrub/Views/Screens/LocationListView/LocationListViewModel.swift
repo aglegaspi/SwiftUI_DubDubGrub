@@ -6,6 +6,7 @@
 //
 
 import CloudKit
+import SwiftUI
 
 final class LocationListViewModel: ObservableObject {
     
@@ -30,5 +31,14 @@ final class LocationListViewModel: ObservableObject {
         let count = checkedInProfiles[location.id, default: []].count
         
         return count == 1 ? "\(count) person checked in" : "\(count) people checked in"
+    }
+    
+    
+    @ViewBuilder func createLocationDetailView(for location: DDGLocation, in sizeCategory: ContentSizeCategory) -> some View {
+        if sizeCategory >= .accessibilityLarge {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location)).embedInScrollView()
+        } else {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+        }
     }
 }

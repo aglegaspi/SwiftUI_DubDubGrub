@@ -44,6 +44,7 @@
 		ECE875E7267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE875E6267F6EF1000CEA5E /* SwiftUI_DubDubGrubApp.swift */; };
 		ECE875EB267F6EF4000CEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875EA267F6EF4000CEA5E /* Assets.xcassets */; };
 		ECE875EE267F6EF4000CEA5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */; };
+		ECF382DF272E492E00ECF95C /* ProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */; };
 		ECF8C6C6270136DE00962517 /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		ECE875EA267F6EF4000CEA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECE875EF267F6EF4000CEA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSheetView.swift; sourceTree = "<group>"; };
 		ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 				EC293FF727162EA800F39F8F /* LocationDetailViewModel.swift */,
 				EC8E6A06268BD91000492B3D /* LocationDetailView.swift */,
 				EC461B982721AE9500EE7365 /* ProfileModalView.swift */,
+				ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */,
 			);
 			path = LocationDetailView;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				ECCE7CE0269476B60088E52D /* LocationCell.swift in Sources */,
 				ECCE7CE826947CC90088E52D /* DDGButton.swift in Sources */,
 				EC8A99DB2729CDAB008CDC61 /* MapBalloon.swift in Sources */,
+				ECF382DF272E492E00ECF95C /* ProfileSheetView.swift in Sources */,
 				ECCE7CE2269477240088E52D /* AvatarView.swift in Sources */,
 				ECE00ADD2713B1D300015B18 /* LoadingView.swift in Sources */,
 				EC0A7D162684AD4B00553858 /* Color+Ext.swift in Sources */,
