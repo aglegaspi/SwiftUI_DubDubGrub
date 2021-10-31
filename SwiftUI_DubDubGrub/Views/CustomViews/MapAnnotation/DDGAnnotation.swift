@@ -40,6 +40,7 @@ struct DDGAnnotation: View {
                 .font(.caption)
                 .fontWeight(.semibold)
         }
+        .accessibilityLabel(Text("Map Pin \(location.name),  \(number) user(s) checked in")) // refactor this line
     }
 }
 
