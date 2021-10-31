@@ -49,11 +49,7 @@ struct LocationMapView: View {
             }
             
         }
-        .alert(item: $viewModel.alertItem, content: { alertItem in
-            Alert(title: alertItem.title,
-                  message: alertItem.message,
-                  dismissButton: alertItem.dismissButton)
-        })
+        .alert(item: $viewModel.alertItem) { $0.alert }
         .onAppear {
             if locationManager.locations.isEmpty { viewModel.getLocations(for: locationManager) }
             viewModel.getCheckedInCount()
