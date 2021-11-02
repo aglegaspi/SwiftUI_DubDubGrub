@@ -22,6 +22,7 @@ struct ProfileModalView: View {
                     .font(.title2)
                     .lineLimit(2)
                     .minimumScaleFactor(0.75)
+                    .padding(.horizontal)
                 
                 Text(profile.companyName)
                     .bold()
@@ -29,6 +30,7 @@ struct ProfileModalView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                     .foregroundColor(.secondary)
+                    .padding(.horizontal)
                     .accessibilityLabel(Text("Works at \(profile.companyName)"))
                 
                 Text(profile.bio)
