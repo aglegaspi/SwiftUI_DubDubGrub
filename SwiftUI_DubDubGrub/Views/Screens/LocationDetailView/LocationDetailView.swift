@@ -105,9 +105,6 @@ struct LocationDetailView: View {
                     
                     if viewModel.isLoading { LoadingView() }
                 } //zstack
-                
-
-                Spacer()
             }
                 .accessibilityHidden(viewModel.isShowingProfileModal)
             
