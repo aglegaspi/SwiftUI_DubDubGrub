@@ -69,34 +69,18 @@ struct LocationDetailView: View {
                 }
                 .padding(.horizontal)
                 
-                Text("Who's Here?")
-                    .bold()
-                    .font(.title2)
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityLabel(Text("Who's Here? \(viewModel.checkedInProfiles.count) checked in"))
-                    .accessibilityHint(Text("Bottom section is scrollable"))
+                GridHeaderView(number: viewModel.checkedInProfiles.count)
                 
                 ZStack {
 
                     if viewModel.checkedInProfiles.isEmpty {
-                        Text("Nobody's Here 🥸")
-                            .bold()
-                            .font(.title3)
-                            .foregroundColor(.secondary)
-                            .padding(.top, 30)
+                        GridEmptyStateView()
                     } else {
                         ScrollView {
                             LazyVGrid(columns: viewModel.determineColumns(for: sizeCategory), content: {
                                 
                                 ForEach(viewModel.checkedInProfiles) { profile in
-                                    FirstNameAvatarView(profile: profile)
-                                        .accessibilityElement(children: .ignore)
-                                        .accessibilityAddTraits(.isButton)
-                                        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
-                                        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
-                                        .onTapGesture {
-                                            viewModel.show(profile, in: sizeCategory)
-                                        }
+                                    FirstNameAvatarView(profile: profile).onTapGesture { viewModel.show(profile, in: sizeCategory) }
                                 }
                                 
                             })
@@ -187,6 +171,10 @@ fileprivate struct FirstNameAvatarView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
+        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
     }
 }
 
@@ -212,5 +200,29 @@ fileprivate struct DescriptionView: View {
             .minimumScaleFactor(0.75)
             .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal)
+    }
+}
+
+fileprivate struct GridHeaderView: View {
+    
+    var number: Int
+    
+    var body: some View {
+        Text("Who's Here?")
+            .bold()
+            .font(.title2)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityLabel(Text("Who's Here? \(number) checked in"))
+            .accessibilityHint(Text("Bottom section is scrollable"))
+    }
+}
+
+struct GridEmptyStateView: View {
+    var body: some View {
+        Text("Nobody's Here 🥸")
+            .bold()
+            .font(.title3)
+            .foregroundColor(.secondary)
+            .padding(.top, 30)
     }
 }
