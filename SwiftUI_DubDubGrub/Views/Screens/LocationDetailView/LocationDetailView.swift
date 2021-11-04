@@ -26,7 +26,6 @@ struct LocationDetailView: View {
             
             if viewModel.isShowingProfileModal {
                 FullScreenBlackTransparencyView()
-                
                 ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModal,
                                  profile: viewModel.selectedProfile!)
             }
@@ -58,47 +57,8 @@ struct LocationDetailView_Previews: PreviewProvider {
     }
 }
 
-fileprivate struct LocationActionButton: View {
-    
-    var color: Color
-    var imageName: String
-    
-    var body: some View {
-        ZStack {
-            Circle()
-                .foregroundColor(color)
-                .frame(width: 60, height: 60)
-            Image(systemName: imageName)
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.white)
-                .frame(width: 22, height: 22)
-        }
-    }
-}
 
-fileprivate struct FirstNameAvatarView: View {
-    
-    var profile: DDGProfile
-    @Environment(\.sizeCategory) var sizeCategory
-    
-    var body: some View {
-        VStack {
-            AvatarView(image: profile.avatarImage,
-                       size: sizeCategory >= .accessibilityLarge ? 100: 64)
-            
-            Text(profile.firstName)
-                .bold()
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityAddTraits(.isButton)
-        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
-        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
-    }
-}
-
+//MARK: - SUBVIEWS
 fileprivate struct BannerImageView: View {
     
     var image: UIImage
@@ -112,54 +72,7 @@ fileprivate struct BannerImageView: View {
     }
 }
 
-fileprivate struct DescriptionView: View {
-    
-    var text: String
-    
-    var body: some View {
-        Text(text)
-            .minimumScaleFactor(0.75)
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.horizontal)
-    }
-}
-
-fileprivate struct GridHeaderView: View {
-    
-    var number: Int
-    
-    var body: some View {
-        Text("Who's Here?")
-            .bold()
-            .font(.title2)
-            .accessibilityAddTraits(.isHeader)
-            .accessibilityLabel(Text("Who's Here? \(number) checked in"))
-            .accessibilityHint(Text("Bottom section is scrollable"))
-    }
-}
-
-struct GridEmptyStateView: View {
-    var body: some View {
-        Text("Nobody's Here 🥸")
-            .bold()
-            .font(.title3)
-            .foregroundColor(.secondary)
-            .padding(.top, 30)
-    }
-}
-
-struct FullScreenBlackTransparencyView: View {
-    
-    var body: some View {
-        Color(.systemBackground)
-            .ignoresSafeArea()
-            .opacity(0.9)
-            .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
-            .zIndex(1)
-    }
-}
-
-struct AddressHStack: View {
+fileprivate struct AddressHStack: View {
     var address: String
     
     var body: some View {
@@ -170,6 +83,18 @@ struct AddressHStack: View {
             Spacer()
         }
         .padding(.horizontal)
+    }
+}
+
+fileprivate struct DescriptionView: View {
+    
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .minimumScaleFactor(0.75)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.horizontal)
     }
 }
 
@@ -215,6 +140,20 @@ fileprivate struct ActionButtonHStack: View {
     }
 }
 
+fileprivate struct GridHeaderView: View {
+    
+    var number: Int
+    
+    var body: some View {
+        Text("Who's Here?")
+            .bold()
+            .font(.title2)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityLabel(Text("Who's Here? \(number) checked in"))
+            .accessibilityHint(Text("Bottom section is scrollable"))
+    }
+}
+
 struct AvatarGridView: View {
     
     @Environment(\.sizeCategory) var sizeCategory
@@ -241,3 +180,68 @@ struct AvatarGridView: View {
         }
     }
 }
+
+
+fileprivate struct LocationActionButton: View {
+    
+    var color: Color
+    var imageName: String
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .foregroundColor(color)
+                .frame(width: 60, height: 60)
+            Image(systemName: imageName)
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(.white)
+                .frame(width: 22, height: 22)
+        }
+    }
+}
+
+fileprivate struct FirstNameAvatarView: View {
+    
+    var profile: DDGProfile
+    @Environment(\.sizeCategory) var sizeCategory
+    
+    var body: some View {
+        VStack {
+            AvatarView(image: profile.avatarImage,
+                       size: sizeCategory >= .accessibilityLarge ? 100: 64)
+            
+            Text(profile.firstName)
+                .bold()
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
+        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
+    }
+}
+
+struct GridEmptyStateView: View {
+    var body: some View {
+        Text("Nobody's Here 🥸")
+            .bold()
+            .font(.title3)
+            .foregroundColor(.secondary)
+            .padding(.top, 30)
+    }
+}
+
+struct FullScreenBlackTransparencyView: View {
+    
+    var body: some View {
+        Color(.systemBackground)
+            .ignoresSafeArea()
+            .opacity(0.9)
+            .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
+            .zIndex(1)
+            .accessibilityHidden(true)
+    }
+}
+
