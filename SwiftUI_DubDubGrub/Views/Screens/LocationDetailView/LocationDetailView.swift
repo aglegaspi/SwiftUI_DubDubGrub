@@ -18,10 +18,7 @@ struct LocationDetailView: View {
                 BannerImageView(image: viewModel.location.bannerImage)
                 
                 HStack {
-                    Label(viewModel.location.address, systemImage: "mappin.and.ellipse")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
+                    AddressView(address: viewModel.location.address)
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -224,5 +221,15 @@ struct FullScreenBlackTransparencyView: View {
             .opacity(0.9)
             .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
             .zIndex(1)
+    }
+}
+
+struct AddressView: View {
+    var address: String
+    
+    var body: some View {
+        Label(address, systemImage: "mappin.and.ellipse")
+            .font(.caption)
+            .foregroundColor(.secondary)
     }
 }
