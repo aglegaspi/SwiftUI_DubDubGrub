@@ -20,25 +20,7 @@ struct LocationDetailView: View {
                 DescriptionView(text: viewModel.location.description)
                 ActionButtonHStack(viewModel: viewModel)
                 GridHeaderView(number: viewModel.checkedInProfiles.count)
-                
-                ZStack {
-                    
-                    if viewModel.checkedInProfiles.isEmpty {
-                        GridEmptyStateView()
-                    } else {
-                        ScrollView {
-                            LazyVGrid(columns: viewModel.determineColumns(for: sizeCategory), content: {
-                                
-                                ForEach(viewModel.checkedInProfiles) { profile in
-                                    FirstNameAvatarView(profile: profile).onTapGesture { viewModel.show(profile, in: sizeCategory) }
-                                }
-                                
-                            })
-                        } //scrollview
-                    } //else
-                    
-                    if viewModel.isLoading { LoadingView() }
-                } //zstack
+                AvatarGridView(viewModel: viewModel)
             }
             .accessibilityHidden(viewModel.isShowingProfileModal)
             
@@ -230,5 +212,32 @@ fileprivate struct ActionButtonHStack: View {
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         .background(Color(.secondarySystemBackground))
         .clipShape(Capsule())
+    }
+}
+
+struct AvatarGridView: View {
+    
+    @Environment(\.sizeCategory) var sizeCategory
+    @ObservedObject var viewModel: LocationDetailViewModel
+    
+    var body: some View {
+        ZStack {
+            
+            if viewModel.checkedInProfiles.isEmpty {
+                GridEmptyStateView()
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: viewModel.determineColumns(for: sizeCategory), content: {
+                        
+                        ForEach(viewModel.checkedInProfiles) { profile in
+                            FirstNameAvatarView(profile: profile).onTapGesture { viewModel.show(profile, in: sizeCategory) }
+                        }
+                        
+                    })
+                } //scrollview
+            } //else
+            
+            if viewModel.isLoading { LoadingView() }
+        }
     }
 }
