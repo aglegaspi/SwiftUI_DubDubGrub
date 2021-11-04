@@ -16,51 +16,9 @@ struct LocationDetailView: View {
         ZStack {
             VStack(spacing: 16) {
                 BannerImageView(image: viewModel.location.bannerImage)
-                
-                HStack {
-                    AddressView(address: viewModel.location.address)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                
+                AddressHStack(address: viewModel.location.address)
                 DescriptionView(text: viewModel.location.description)
-                
-                HStack(spacing: 20) {
-                    Button {
-                        viewModel.getDirectionsToLocation()
-                    } label: {
-                        LocationActionButton(color: .brandPrimary, imageName: "location.fill")
-                            .accessibilityLabel(Text("Get Directions"))
-                    }
-                    
-                    Link(destination: URL(string: viewModel.location.websiteURL)!, label: {
-                        LocationActionButton(color: .brandPrimary, imageName: "network")
-                            .accessibilityRemoveTraits(.isButton)
-                            .accessibilityLabel(Text("Go to \(viewModel.location.name) Website"))
-                    })
-                    
-                    Button {
-                        viewModel.callLocation()
-                    } label: {
-                        LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
-                    }
-                    .accessibilityLabel(Text("Call \(viewModel.location.name)"))
-
-                    if viewModel.userHasProfile != false {
-                        Button {
-                            viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
-                        } label: {
-                            LocationActionButton(color: viewModel.buttonColor, imageName: viewModel.buttonImageTitle)
-                        }
-                        .accessibilityLabel(Text(viewModel.buttonA11yLabel))
-                        .disabled(viewModel.isLoading)
-                    }
-                } //HStack
-                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                .background(Color(.secondarySystemBackground))
-                .clipShape(Capsule())
-                
-                
+                ActionButtonHStack(viewModel: viewModel)
                 GridHeaderView(number: viewModel.checkedInProfiles.count)
                 
                 ZStack {
@@ -112,7 +70,7 @@ struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
         
         NavigationView {
-            LocationDetailView(viewModel: LocationDetailView.LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
+            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)) )
         }
         
     }
@@ -219,12 +177,58 @@ struct FullScreenBlackTransparencyView: View {
     }
 }
 
-struct AddressView: View {
+struct AddressHStack: View {
     var address: String
     
     var body: some View {
-        Label(address, systemImage: "mappin.and.ellipse")
-            .font(.caption)
-            .foregroundColor(.secondary)
+        HStack {
+            Label(address, systemImage: "mappin.and.ellipse")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            Spacer()
+        }
+        .padding(.horizontal)
+    }
+}
+
+fileprivate struct ActionButtonHStack: View {
+    
+    @ObservedObject var viewModel: LocationDetailViewModel
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            Button {
+                viewModel.getDirectionsToLocation()
+            } label: {
+                LocationActionButton(color: .brandPrimary, imageName: "location.fill")
+                    .accessibilityLabel(Text("Get Directions"))
+            }
+            
+            Link(destination: URL(string: viewModel.location.websiteURL)!, label: {
+                LocationActionButton(color: .brandPrimary, imageName: "network")
+                    .accessibilityRemoveTraits(.isButton)
+                    .accessibilityLabel(Text("Go to \(viewModel.location.name) Website"))
+            })
+            
+            Button {
+                viewModel.callLocation()
+            } label: {
+                LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
+            }
+            .accessibilityLabel(Text("Call \(viewModel.location.name)"))
+            
+            if viewModel.userHasProfile != false {
+                Button {
+                    viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
+                } label: {
+                    LocationActionButton(color: viewModel.buttonColor, imageName: viewModel.buttonImageTitle)
+                }
+                .accessibilityLabel(Text(viewModel.buttonA11yLabel))
+                .disabled(viewModel.isLoading)
+            }
+        } //HStack
+        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+        .background(Color(.secondarySystemBackground))
+        .clipShape(Capsule())
     }
 }
