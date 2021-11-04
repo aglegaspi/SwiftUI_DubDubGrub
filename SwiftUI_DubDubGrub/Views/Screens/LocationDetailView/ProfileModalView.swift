@@ -59,7 +59,11 @@ struct ProfileModalView: View {
                 .offset(y: -140)
                 .accessibilityHidden(true)
         }
+        .transition(.opacity.combined(with: .slide))
+        .animation(.easeOut)
+        .zIndex(2)
     }
+    
 }
 
 struct ProfileModalView_Previews: PreviewProvider {

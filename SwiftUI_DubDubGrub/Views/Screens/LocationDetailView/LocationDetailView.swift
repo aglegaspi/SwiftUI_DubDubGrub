@@ -93,17 +93,10 @@ struct LocationDetailView: View {
                 .accessibilityHidden(viewModel.isShowingProfileModal)
             
             if viewModel.isShowingProfileModal {
-                Color(.systemBackground)
-                    .ignoresSafeArea()
-                    .opacity(0.9)
-                    .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
-                    .zIndex(1)
+                FullScreenBlackTransparencyView()
                 
                 ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModal,
                                  profile: viewModel.selectedProfile!)
-                    .transition(.opacity.combined(with: .slide))
-                    .animation(.easeOut)
-                    .zIndex(2)
             }
         }
         .onAppear {
@@ -220,5 +213,16 @@ struct GridEmptyStateView: View {
             .font(.title3)
             .foregroundColor(.secondary)
             .padding(.top, 30)
+    }
+}
+
+struct FullScreenBlackTransparencyView: View {
+    
+    var body: some View {
+        Color(.systemBackground)
+            .ignoresSafeArea()
+            .opacity(0.9)
+            .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
+            .zIndex(1)
     }
 }
