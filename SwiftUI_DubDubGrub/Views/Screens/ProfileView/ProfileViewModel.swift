@@ -27,6 +27,8 @@ extension ProfileView {
             didSet { profileContext = .update }
         }
         var profileContext: ProfileContext = .create
+        var buttonTitle: String { profileContext == .create ? "Create Profile" : "Update Profile" }
+        var buttonAction: () { profileContext == .create ? createProfile() : updateProfile() }
         
         // MARK: - Is Valid Profile
         private func isValidProfile() -> Bool {

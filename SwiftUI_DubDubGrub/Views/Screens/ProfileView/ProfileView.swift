@@ -15,7 +15,6 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             VStack {
-                NameBackgroundView()
                 
                 HStack(spacing: 16) {
                     ProfileImageView(image: viewModel.avatar)
@@ -57,10 +56,10 @@ struct ProfileView: View {
                 Spacer()
                 
                 Button {
-                    viewModel.profileContext == .create ? viewModel.createProfile() : viewModel.updateProfile()
+                    viewModel.buttonAction
                     
                 } label: {
-                    DDGButton(title: viewModel.profileContext == .create ? "Create Profile" : "Update Profile")
+                    DDGButton(title: viewModel.buttonTitle)
                 }
                 .padding(.bottom)
             } // VStack
