@@ -15,30 +15,22 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             VStack {
-                ZStack {
-                    NameBackgroundView()
-                    
-                    HStack(spacing: 16) {
-                        ZStack {
-                            AvatarView(image: viewModel.avatar, size: 84)
-                            EditImage()
-                        }
-                        .accessibilityElement(children: .ignore)
-                        .accessibilityAddTraits(.isButton)
-                        .accessibilityLabel(Text("Profile Photo"))
-                        .accessibilityHint(Text("Opens the photo picker"))
-                        .padding(.leading,12)
+                NameBackgroundView()
+                
+                HStack(spacing: 16) {
+                    ProfileImageView(image: viewModel.avatar)
                         .onTapGesture { viewModel.isShowingPhotoPicker = true }
-                        
-                        VStack(spacing: 1) {
-                            TextField("First Name", text: $viewModel.firstName).profileNameStyle()
-                            TextField("Last Name", text: $viewModel.lastName).profileNameStyle()
-                            TextField("Company Name", text: $viewModel.companyName)
-                        }
-                        .padding(.trailing, 16)
+                    
+                    VStack(spacing: 1) {
+                        TextField("First Name", text: $viewModel.firstName).profileNameStyle()
+                        TextField("Last Name", text: $viewModel.lastName).profileNameStyle()
+                        TextField("Company Name", text: $viewModel.companyName)
                     }
-                    .padding()
+                    .padding(.trailing, 16)
                 }
+                .padding(.vertical)
+                .background(Color.blue).cornerRadius(12)
+                .padding()
                 
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
@@ -54,7 +46,7 @@ struct ProfileView: View {
                                 CheckOutButton()
                             }
                             .accessibilityLabel(Text("Check out of current location"))
-                            #warning("store location and pass it above")
+#warning("store location and pass it above")
                         }
                     }
                     
@@ -118,14 +110,28 @@ fileprivate struct NameBackgroundView: View {
     }
 }
 
-fileprivate struct EditImage: View {
+fileprivate struct ProfileImageView: View {
+    
+    var image: UIImage
+    
     var body: some View {
-        Image(systemName: "square.and.pencil")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20)
-            .foregroundColor(.black)
-            .offset(x: 30, y: 32)
+        
+        ZStack {
+            AvatarView(image: image, size: 84)
+            
+            Image(systemName: "square.and.pencil")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+                .foregroundColor(.black)
+                .offset(x: 30, y: 32)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Profile Photo"))
+        .accessibilityHint(Text("Opens the photo picker"))
+        .padding(.leading,12)
+        
     }
 }
 
@@ -169,7 +175,7 @@ struct BioTextEditor: View {
         TextEditor(text: text)
             .frame(height: 100)
             .overlay(RoundedRectangle(cornerRadius: 8)
-            .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+                        .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
             .accessibilityHint(Text("Textfield has 100 characters max"))
     }
 }
