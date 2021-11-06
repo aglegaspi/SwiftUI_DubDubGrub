@@ -51,27 +51,14 @@ struct ProfileView: View {
                                 viewModel.checkOut()
                                 HapticManager.playSuccess()
                             } label: {
-                                Label("Check Out", systemImage: "mappin.and.ellipse")
-                                    .font(.system(size: 12, weight: .semibold))
-                                    .foregroundColor(.white)
-                                    .padding(10)
-                                    .frame(height: 28)
-                                    .background(Color.grubRed)
-                                    .cornerRadius(8)
+                                CheckOutButton()
                             }
                             .accessibilityLabel(Text("Check out of current location"))
                             #warning("store location and pass it above")
                         }
                     }
                     
-                    TextEditor(text: $viewModel.bio)
-                        .frame(height: 100)
-                        .overlay(RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
-                        .accessibilityLabel(Text("Bio, \(viewModel.bio)"))
-                        .accessibilityHint(Text("Textfield has 100 characters max"))
-                    
-                    
+                    BioTextEditor(text: $viewModel.bio)
                 }
                 .padding(.horizontal, 20)
                 
@@ -159,5 +146,30 @@ fileprivate struct CharactersRemainView: View {
         Text(" characters remain")
             .font(.callout)
             .foregroundColor(.secondary)
+    }
+}
+
+struct CheckOutButton: View {
+    var body: some View {
+        Label("Check Out", systemImage: "mappin.and.ellipse")
+            .font(.system(size: 12, weight: .semibold))
+            .foregroundColor(.white)
+            .padding(10)
+            .frame(height: 28)
+            .background(Color.grubRed)
+            .cornerRadius(8)
+    }
+}
+
+struct BioTextEditor: View {
+    
+    var text: Binding<String>
+    
+    var body: some View {
+        TextEditor(text: text)
+            .frame(height: 100)
+            .overlay(RoundedRectangle(cornerRadius: 8)
+            .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+            .accessibilityHint(Text("Textfield has 100 characters max"))
     }
 }
