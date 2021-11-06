@@ -117,7 +117,7 @@ struct ProfileView: View {
 
 
 
-struct ProfileView_Previews: PreviewProvider {
+fileprivate struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             ProfileView()
@@ -126,7 +126,7 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 
-struct NameBackgroundView: View {
+fileprivate struct NameBackgroundView: View {
     var body: some View {
         Color(.secondarySystemBackground)
             .frame(height: 130)
@@ -135,7 +135,7 @@ struct NameBackgroundView: View {
     }
 }
 
-struct EditImage: View {
+fileprivate struct EditImage: View {
     var body: some View {
         Image(systemName: "square.and.pencil")
             .resizable()
@@ -146,7 +146,7 @@ struct EditImage: View {
     }
 }
 
-struct CharactersRemainView: View {
+fileprivate struct CharactersRemainView: View {
     
     var currentCount: Int
     
