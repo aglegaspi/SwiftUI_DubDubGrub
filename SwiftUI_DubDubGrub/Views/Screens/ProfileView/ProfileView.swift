@@ -102,11 +102,7 @@ struct ProfileView: View {
             viewModel.getProfile()
             viewModel.getCheckedInStatus()
         }
-        .alert(item: $viewModel.alertItem, content: { alertItem in
-            Alert(title: alertItem.title,
-                  message: alertItem.message,
-                  dismissButton: alertItem.dismissButton)
-        }) // alert
+        .alert(item: $viewModel.alertItem) { $0.alert }
         .sheet(isPresented: $viewModel.isShowingPhotoPicker) {
             // when picture is selected it'll be set to avatar
             PhotoPicker(image: $viewModel.avatar)
