@@ -28,6 +28,7 @@ struct ProfileView: View {
                     .padding(.trailing, 16)
                 }
                 .padding(.vertical)
+                .background(Color(.secondarySystemBackground))
                 .background(Color.blue).cornerRadius(12)
                 .padding()
                 
