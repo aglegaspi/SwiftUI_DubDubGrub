@@ -45,7 +45,6 @@ struct ProfileView: View {
                                 CheckOutButton()
                             }
                             .accessibilityLabel(Text("Check out of current location"))
-#warning("store location and pass it above")
                         }
                     }
                     
