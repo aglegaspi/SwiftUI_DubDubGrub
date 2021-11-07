@@ -85,7 +85,7 @@ final class CloudKitManager {
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
         let operation = CKQueryOperation(query: query)
-        operation.resultsLimit = 1
+        //operation.resultsLimit = 1
         //operation.desiredKeys = [DDGProfile.kIsCheckedIn,DDGProfile.kAvatar]
         var checkedInProfiles: [CKRecord.ID : [DDGProfile]] = [:]
         
@@ -130,7 +130,7 @@ final class CloudKitManager {
         
         var checkedInProfiles = dictionary
         let operation = CKQueryOperation(cursor:  cursor)
-        operation.resultsLimit = 1
+        //operation.resultsLimit = 1
         
         operation.recordFetchedBlock = { record in
             let profile = DDGProfile(record: record)
