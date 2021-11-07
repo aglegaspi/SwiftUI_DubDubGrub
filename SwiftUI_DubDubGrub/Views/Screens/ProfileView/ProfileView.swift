@@ -46,6 +46,7 @@ struct ProfileView: View {
                                 CheckOutButton()
                             }
                             .accessibilityLabel(Text("Check out of current location"))
+                            .disabled(viewModel.isLoading)
                         }
                     }
                     
