@@ -95,7 +95,7 @@ extension ProfileView {
         
         
         // MARK: - Create Profile
-        func createProfile() {
+        private func createProfile() {
             guard isValidProfile() else {
                 alertItem = AlertContext.invalidProfile
                 return
@@ -173,7 +173,7 @@ extension ProfileView {
         } // getProfile
         
         
-        func updateProfile() {
+        private func updateProfile() {
             guard isValidProfile() else {
                 alertItem = AlertContext.invalidProfile
                 return
