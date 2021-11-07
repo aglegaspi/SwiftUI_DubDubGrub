@@ -81,7 +81,7 @@ final class CloudKitManager {
     
     
     func getCheckedInProfilesDictionary(completed: @escaping (Result<[CKRecord.ID : [DDGProfile]], Error>) -> Void) {
-        print("✅ Network call fired off")
+        //print("✅ Network call fired off")
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
         let operation = CKQueryOperation(query: query)
@@ -102,15 +102,15 @@ final class CloudKitManager {
             }
             
             if let cursor = cursor {
-                print("1️⃣ initial cursor is not nil")
-                print("👨‍👩‍👧‍👦 Current dictionary - \(checkedInProfiles)")
+                //print("1️⃣ initial cursor is not nil")
+                //print("👨‍👩‍👧‍👦 Current dictionary - \(checkedInProfiles)")
                 self.continueWithCheckedInProfilesDictionary(cursor: cursor, dictionary: checkedInProfiles) { result in
                     switch result {
                     case .success(let profiles):
-                        print("♻️✅ initial recursive success - dictionary - \(profiles)")
+                        //print("♻️✅ initial recursive success - dictionary - \(profiles)")
                         completed(.success(profiles))
                     case .failure(let error):
-                        print("♻️🛑 initial recursive error \(error)")
+                        //print("♻️🛑 initial recursive error \(error)")
                         completed(.failure(error))
                     }
                 }
@@ -142,16 +142,16 @@ final class CloudKitManager {
             guard error == nil else { completed(.failure(error!)); return }
             
             if let cursor = cursor {
-                print("♻️ recursive cursor is not nil")
-                print("👨‍👩‍👧‍👦 Current dictionary - \(checkedInProfiles)")
+                //print("♻️ recursive cursor is not nil")
+                //print("👨‍👩‍👧‍👦 Current dictionary - \(checkedInProfiles)")
                 
                 self.continueWithCheckedInProfilesDictionary(cursor: cursor, dictionary: checkedInProfiles) { result in
                     switch result {
                     case .success(let profiles):
-                        print("♻️✅ recursive success - dictionary - \(profiles)")
+                        //print("♻️✅ recursive success - dictionary - \(profiles)")
                         completed(.success(profiles))
                     case .failure(let error):
-                        print("♻️🛑 recursive error \(error)")
+                        //print("♻️🛑 recursive error \(error)")
                         completed(.failure(error))
                     }
                 }
