@@ -46,7 +46,6 @@
 		ECE875EE267F6EF4000CEA5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE875ED267F6EF4000CEA5E /* Preview Assets.xcassets */; };
 		ECF382DF272E492E00ECF95C /* ProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */; };
 		ECF382E1272F30BC00ECF95C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF382E0272F30BA00ECF95C /* HapticManager.swift */; };
-		ECF8C6C6270136DE00962517 /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +91,6 @@
 		ECE875EF267F6EF4000CEA5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECF382DE272E492D00ECF95C /* ProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSheetView.swift; sourceTree = "<group>"; };
 		ECF382E0272F30BA00ECF95C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +203,6 @@
 				EC0A7D152684AD4B00553858 /* Color+Ext.swift */,
 				ECCE7CE526947BE20088E52D /* View+Ext.swift */,
 				ECC0126D26E0FA7E00B3E1E0 /* CKAsset+Ext.swift */,
-				ECF8C6C5270136DE00962517 /* CKRecord+Ext.swift */,
 				ECB07E4126FD0915002DA5AF /* UIImage+Ext.swift */,
 			);
 			path = Extensions;
@@ -395,7 +392,6 @@
 				EC872B662697B1D500B876DD /* DDGProfile.swift in Sources */,
 				EC872B642697AAA200B876DD /* DDGLocation.swift in Sources */,
 				EC0A7D192684ADEF00553858 /* AppTabView.swift in Sources */,
-				ECF8C6C6270136DE00962517 /* CKRecord+Ext.swift in Sources */,
 				EC0A7D222684AE5C00553858 /* ProfileView.swift in Sources */,
 				ECE8753A26DFE442006ECB70 /* LocationManager.swift in Sources */,
 				EC56884F26AF013200501476 /* LocationMapViewModel.swift in Sources */,
