@@ -22,14 +22,14 @@ struct LocationListView: View {
                                      profiles: viewModel.checkedInProfiles[location.id, default: []])
                             .accessibilityElement(children: .ignore)
                             .accessibilityLabel(Text("\(location.name),  \(viewModel.countVoiceOverSummary(for: location))"))
-                        }
+                    }
                 }
             }
             .navigationTitle("Grub Spots")
+            .listStyle(.plain)
             .alert(item: $viewModel.alertItem) { $0.alert }
         }
         .onAppear {
-            print("👀 onAppear called")
             viewModel.getCheckedInProfilesDictionary()
             
         }
