@@ -176,8 +176,9 @@ struct BioTextEditor: View {
             .frame(height: 100)
             .overlay {
                 RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                    .stroke(Color.secondary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
             }
+            .padding()
             .accessibilityHint(Text("Textfield has 100 characters max"))
     }
 }
