@@ -60,7 +60,6 @@ struct ProfileModalView: View {
                 .accessibilityHidden(true)
         }
         .transition(.opacity.combined(with: .slide))
-        .animation(.easeOut)
         .zIndex(2)
     }
     

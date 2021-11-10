@@ -170,7 +170,10 @@ struct AvatarGridView: View {
                     LazyVGrid(columns: viewModel.determineColumns(for: sizeCategory), content: {
                         
                         ForEach(viewModel.checkedInProfiles) { profile in
-                            FirstNameAvatarView(profile: profile).onTapGesture { viewModel.show(profile, in: sizeCategory) }
+                            FirstNameAvatarView(profile: profile)
+                                .onTapGesture {
+                                    withAnimation { viewModel.show(profile, in: sizeCategory) }
+                                }
                         }
                         
                     })
