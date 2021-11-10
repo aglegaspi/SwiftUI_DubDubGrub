@@ -10,9 +10,11 @@ import SwiftUI
 struct AppTabView: View {
     
 @StateObject private var viewModel = AppTabViewModel()
- 
+    
     var body: some View {
+        
         TabView {
+            
             LocationMapView().tabItem { Label("Map", systemImage: "map") }
             
             LocationListView().tabItem { Label("Locations", systemImage: "building") }
@@ -24,9 +26,8 @@ struct AppTabView: View {
             viewModel.runStartupChecks()
             CloudKitManager.shared.getUserRecord()
         }
-        .sheet(isPresented: $viewModel.isShowingOnboardView, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {
-            OnboardView()
-        }
+        .sheet(isPresented: $viewModel.isShowingOnboardView,
+               onDismiss: viewModel.checkIfLocationServicesIsEnabled) { OnboardView() }
     }
 }
 
