@@ -29,6 +29,7 @@ struct LocationMapView: View {
                             viewModel.isShowingDetailView = true
                         }
                 }
+                
             }
             .accentColor(.grubRed)
             .ignoresSafeArea()
@@ -41,7 +42,6 @@ struct LocationMapView: View {
                     viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: sizeCategory)
                         .toolbar { Button("Dismiss") { viewModel.isShowingDetailView = false } }
                 }
-                .accentColor(.brandPrimary)
             } else {
                 #warning("Create Empty State Sheet or Alert")
             }

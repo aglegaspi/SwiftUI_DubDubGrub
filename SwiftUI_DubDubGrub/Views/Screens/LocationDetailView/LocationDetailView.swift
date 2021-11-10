@@ -40,7 +40,6 @@ struct LocationDetailView: View {
                 ProfileSheetView(profile: viewModel.selectedProfile!)
                     .toolbar { Button("Dismiss", action: { viewModel.isShowingProfileSheet = false }) }
             }
-            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem) { $0.alert } // alert
         .navigationTitle(viewModel.location.name)
