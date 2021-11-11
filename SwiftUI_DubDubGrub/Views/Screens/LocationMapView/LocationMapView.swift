@@ -35,17 +35,14 @@ struct LocationMapView: View {
             .ignoresSafeArea()
             
             LogoView(frameWidth: 125).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            
+            
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
-            if let selectedLocation = locationManager.selectedLocation {
                 NavigationView {
                     viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: dynamicTypeSize)
                         .toolbar { Button("Dismiss") { viewModel.isShowingDetailView = false } }
                 }
-            } else {
-                #warning("Create Empty State Sheet or Alert")
-            }
-            
         }
         .alert(item: $viewModel.alertItem) { $0.alert }
         .onAppear {
