@@ -32,31 +32,29 @@ struct LocationMapView: View {
                 }
                 
             }
-            .accentColor(.grubRed)
-            .ignoresSafeArea()
+                .accentColor(.grubRed)
+                .ignoresSafeArea()
             
             LogoView(frameWidth: 125).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
-                NavigationView {
-                    viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: dynamicTypeSize)
-                        .toolbar { Button("Dismiss") { viewModel.isShowingDetailView = false } }
-                }
+            NavigationView {
+                viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: dynamicTypeSize)
+                    .toolbar { Button("Dismiss") { viewModel.isShowingDetailView = false } }
+            }
         }
-        .alert(item: $viewModel.alertItem) { $0.alert }
-        .overlay(alignment: .bottomLeading) {
+        .overlay(alignment: .bottomTrailing) {
             LocationButton(.currentLocation) {
-                // button tapped
-                print("location button tapped")
-                
+                viewModel.requestAllowOneLocationPermission()
             }
             .foregroundColor(.white)
             .symbolVariant(.fill)
             .tint(.grubRed)
             .labelStyle(.iconOnly)
             .clipShape(Circle())
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 40, trailing: 0))
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 20))
         }
+        .alert(item: $viewModel.alertItem) { $0.alert }
         .onAppear {
             if locationManager.locations.isEmpty { viewModel.getLocations(for: locationManager) }
             viewModel.getCheckedInCount()
