@@ -23,11 +23,10 @@ struct AppTabView: View {
                 .tabItem { Label("Profile", systemImage: "person") }
         }
         .onAppear {
-            viewModel.runStartupChecks()
             CloudKitManager.shared.getUserRecord()
+            viewModel.checkIfHasSeenOnboard()
         }
-        .sheet(isPresented: $viewModel.isShowingOnboardView,
-               onDismiss: viewModel.checkIfLocationServicesIsEnabled) { OnboardView() }
+        .sheet(isPresented: $viewModel.isShowingOnboardView) { OnboardView() }
     }
 }
 
