@@ -17,28 +17,6 @@ final class CloudKitManager {
     var profileRecordID: CKRecord.ID?
     let container = CKContainer.default()
     
-    //    func getUserRecord() {
-    //        CKContainer.default().fetchUserRecordID { recordID, error in
-    //            guard let recordID = recordID, error == nil else {
-    //                print(error!.localizedDescription)
-    //                return
-    //            }
-    //
-    //            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-    //                guard let userRecord = userRecord, error == nil else {
-    //                    print(error!.localizedDescription)
-    //                    return
-    //                }
-    //
-    //                self.userRecord = userRecord
-    //
-    //                if let profileReference = userRecord["userProfile"] as? CKRecord.Reference {
-    //                    self.profileRecordID = profileReference.recordID
-    //                }
-    //            }
-    //        }
-    //    }
-    
     
     func getUserRecord() async throws {
         
