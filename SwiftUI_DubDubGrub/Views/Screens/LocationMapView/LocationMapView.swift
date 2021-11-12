@@ -55,7 +55,7 @@ struct LocationMapView: View {
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 20))
         }
         .alert(item: $viewModel.alertItem) { $0.alert }
-        .onAppear {
+        .task {
             if locationManager.locations.isEmpty { viewModel.getLocations(for: locationManager) }
             viewModel.getCheckedInCount()
         }

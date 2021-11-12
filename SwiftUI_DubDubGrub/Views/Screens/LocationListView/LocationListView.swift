@@ -25,14 +25,12 @@ struct LocationListView: View {
                     }
                 }
             }
+            .task { print("do the task"); viewModel.getCheckedInProfilesDictionary() }
             .navigationTitle("Grub Spots")
             .listStyle(.plain)
             .alert(item: $viewModel.alertItem) { $0.alert }
         }
-        .onAppear {
-            viewModel.getCheckedInProfilesDictionary()
-            
-        }
+        
         
     }
 }

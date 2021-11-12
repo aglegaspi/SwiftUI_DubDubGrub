@@ -77,7 +77,7 @@ struct ProfileView: View {
             }
             
         } // toolbar
-        .onAppear {
+        .task {
             viewModel.getProfile()
             viewModel.getCheckedInStatus()
         }

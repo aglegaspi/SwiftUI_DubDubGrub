@@ -16,17 +16,15 @@ extension LocationListView {
         @Published var alertItem: AlertItem?
         
         func getCheckedInProfilesDictionary() {
-            CloudKitManager.shared.getCheckedInProfilesDictionary { result in
-                DispatchQueue.main.async { [self] in
-                    switch result {
-                    case .success(let checkedInProfiles):
-                        self.checkedInProfiles = checkedInProfiles
-                    case .failure(_):
-                        self.alertItem = AlertContext.unableToAllCheckedInProfiles
-                    } //Switch
-                } //Dispatch
-                
-            } //CloudKitManager
+            
+            Task {
+                do {
+                    checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesDictionary()
+                } catch {
+                    self.alertItem = AlertContext.unableToAllCheckedInProfiles
+                }
+            }
+            
         } //getCheckedInProfilesDictionary
         
         
