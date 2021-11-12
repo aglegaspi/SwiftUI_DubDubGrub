@@ -11,7 +11,7 @@ import MapKit
 
 extension LocationMapView {
     
-    final class LocationMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    @MainActor final class LocationMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
         @Published var isShowingDetailView = false
@@ -45,15 +45,13 @@ extension LocationMapView {
         }
         
         func getLocations(for locationManager: LocationManager) {
-            CloudKitManager.shared.getLocations { result in
-                // update UI on the main thread. Each update triggers an update on the UI
-                DispatchQueue.main.async {
-                    switch result {
-                case .success(let locations):
-                    locationManager.locations = locations
-                case .failure(_):
-                    self.alertItem = AlertContext.unableToGetLocations
-                }}
+            
+            Task {
+                do {
+                    locationManager.locations = try await CloudKitManager.shared.getLocations()
+                } catch {
+                    alertItem = AlertContext.unableToGetLocations
+                }
             }
         }
         
