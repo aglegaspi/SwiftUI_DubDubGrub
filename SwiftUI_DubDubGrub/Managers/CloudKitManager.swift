@@ -123,22 +123,6 @@ final class CloudKitManager {
         
         return checkedInProfiles
         
-//        guard let cursor = cursor else { return checkedInProfiles }
-//
-//        do {
-//            return try await continueWithCheckedInProfilesDictionary(cursor: cursor, dictionary: checkedInProfiles)
-//        } catch { throw error }
-        
-        //operation.recordFetchedBlock = { record in
-            //guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
-            
-            //if let count = checkedInProfiles[locationReference.recordID] {
-                //checkedInProfiles[locationReference.recordID] = count + 1
-            //} else {
-                //checkedInProfiles[locationReference.recordID] = 1
-            //}
-        //}
-        
     }
     
     
