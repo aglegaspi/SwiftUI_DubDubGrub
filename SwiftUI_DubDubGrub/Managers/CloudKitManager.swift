@@ -94,28 +94,25 @@ final class CloudKitManager {
             checkedInProfiles[locationReference.recordID, default: []].append(profile)
         }
         
-        print("♻️ -- checkedInProfilez = \(checkedInProfiles)")
         guard let cursor = cursor else { return checkedInProfiles }
         
         do {
             return try await continueWithCheckedInProfilesDictionary(cursor: cursor, dictionary: checkedInProfiles)
-        } catch {
-            throw error
-        }
+        } catch { throw error }
 
     } // continueWithCheckedInProfilesDictionary
     
     
-    func getCheckedInProfilesCount(completed: @escaping (Result<[CKRecord.ID : Int], Error>) -> Void) {
+    func getCheckedInProfilesCount() async throws -> [CKRecord.ID : Int] {
+        var checkedInProfiles: [CKRecord.ID : Int] = [:]
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        operation.desiredKeys = [DDGProfile.kIsCheckedIn]
+        let (matchedResults, _) = try await container.publicCloudDatabase.records(matching: query,
+                                                                                  desiredKeys: [DDGProfile.kIsCheckedIn])
+        let records = matchedResults.compactMap { _, result in try? result.get() }
         
-        var checkedInProfiles: [CKRecord.ID : Int] = [:]
-        
-        operation.recordFetchedBlock = { record in
-            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
+        for record in records {
+            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { continue }
             
             if let count = checkedInProfiles[locationReference.recordID] {
                 checkedInProfiles[locationReference.recordID] = count + 1
@@ -123,14 +120,25 @@ final class CloudKitManager {
                 checkedInProfiles[locationReference.recordID] = 1
             }
         }
-        operation.queryCompletionBlock = { cursor, error in
-            guard error == nil else {
-                completed(.failure(error!))
-                return
-            }
-            completed(.success(checkedInProfiles))
-        }
-        CKContainer.default().publicCloudDatabase.add(operation)
+        
+        return checkedInProfiles
+        
+//        guard let cursor = cursor else { return checkedInProfiles }
+//
+//        do {
+//            return try await continueWithCheckedInProfilesDictionary(cursor: cursor, dictionary: checkedInProfiles)
+//        } catch { throw error }
+        
+        //operation.recordFetchedBlock = { record in
+            //guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
+            
+            //if let count = checkedInProfiles[locationReference.recordID] {
+                //checkedInProfiles[locationReference.recordID] = count + 1
+            //} else {
+                //checkedInProfiles[locationReference.recordID] = 1
+            //}
+        //}
+        
     }
     
     

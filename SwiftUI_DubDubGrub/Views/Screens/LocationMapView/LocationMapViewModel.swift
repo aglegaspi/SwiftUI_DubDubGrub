@@ -45,27 +45,19 @@ extension LocationMapView {
         }
         
         func getLocations(for locationManager: LocationManager) {
-            
             Task {
                 do {
                     locationManager.locations = try await CloudKitManager.shared.getLocations()
-                } catch {
-                    alertItem = AlertContext.unableToGetLocations
-                }
+                } catch { alertItem = AlertContext.unableToGetLocations }
             }
         }
         
         
         func getCheckedInCount() {
-            CloudKitManager.shared.getCheckedInProfilesCount { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let retrievedCheckedInProfiles):
-                        self.checkedInProfiles = retrievedCheckedInProfiles
-                    case .failure(_):
-                        self.alertItem = AlertContext.checkedInCount
-                    }
-                }
+            Task {
+                do {
+                    checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesCount()
+                } catch { alertItem = AlertContext.checkedInCount }
             }
         }
         
