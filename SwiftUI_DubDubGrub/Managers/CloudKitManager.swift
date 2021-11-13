@@ -127,43 +127,20 @@ final class CloudKitManager {
     
     
     // MARK: - REUABLE METHODS
-    func batchSave(records: [CKRecord], completed: @escaping (Result<[CKRecord], Error>) -> Void) {
-        // Create a CKOperation to save our User and Profile Records
-        let operation = CKModifyRecordsOperation(recordsToSave: records)
-        
-        operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
-            guard let savedRecords = savedRecords, error == nil else {
-                print(error!.localizedDescription)
-                completed(.failure(error!))
-                return
-            }
-            completed(.success(savedRecords))
-        }
-        CKContainer.default().publicCloudDatabase.add(operation)
+    func batchSave(records: [CKRecord]) async throws -> [CKRecord] {
+        let (savedResults, _) = try await container.publicCloudDatabase.modifyRecords(saving: records, deleting: [])
+        let savedRecords = savedResults.compactMap { _, result in try? result.get() }
+        return savedRecords
     } //batchSave
     
     
-    func save(record: CKRecord, completed: @escaping (Result<CKRecord, Error>) -> Void) {
-        CKContainer.default().publicCloudDatabase.save(record) { record, error in
-            guard let record = record, error == nil else {
-                completed(.failure(error!))
-                return
-            }
-            
-            completed(.success(record))
-        }
+    func save(record: CKRecord) async throws -> CKRecord {
+        return try await container.publicCloudDatabase.save(record)
     } //save
     
     
-    func fetchRecord(with id: CKRecord.ID, completed: @escaping (Result<CKRecord, Error>) -> Void) {
-        // fetch record based on ID
-        CKContainer.default().publicCloudDatabase.fetch(withRecordID: id) { record, error in
-            guard let record = record, error == nil else {
-                completed(.failure(error!))
-                return
-            }
-            completed(.success(record))
-        }
+    func fetchRecord(with id: CKRecord.ID) async throws -> CKRecord {
+        return try await container.publicCloudDatabase.record(for: id)
     } //fetchRecords
     
 } // CloudKitManager

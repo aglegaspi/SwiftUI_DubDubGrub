@@ -61,35 +61,30 @@ enum CheckInStatus { case checkedIn, checkedOut }
     func getCheckedInStatus() {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else { return }
         userHasProfile = true
-        
-        CloudKitManager.shared.fetchRecord(with: profileRecordID) { [self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let record):
-                    if let reference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference {
-                        isCheckedIn = reference.recordID == location.id
-                    } else {
-                        isCheckedIn = false
-                    }
-                case .failure(_):
-                    alertItem = AlertContext.unableToGetCheckinStatus
+                
+        Task {
+            do {
+                let record = try await CloudKitManager.shared.fetchRecord(with: profileRecordID)
+                if let _ = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference {
+                    isCheckedIn = true
+                } else {
+                    isCheckedIn = false
                 }
-            }
+            } catch { alertItem = AlertContext.unableToGetCheckinStatus}
         }
     } //getCheckedInStatus
     
     
     func updateCheckInStatus(to checkInStatus: CheckInStatus) {
-        // Retrieve the DDGProfilw
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else {
             alertItem = AlertContext.unableToGetProfile
             return
         }
-        
         showLoadingView()
-        CloudKitManager.shared.fetchRecord(with: profileRecordID) { [self] result in
-            switch result {
-            case .success(let record):
+        
+        Task {
+            do {
+                let record = try await CloudKitManager.shared.fetchRecord(with: profileRecordID)
                 switch checkInStatus {
                 case .checkedIn:
                     record[DDGProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
@@ -99,34 +94,26 @@ enum CheckInStatus { case checkedIn, checkedOut }
                     record[DDGProfile.kIsCheckedInNilCheck] = nil
                 }
                 
-                // Save the updated profile to CloudKit
-                CloudKitManager.shared.save(record: record) { [self] result in
-                    hideLoadingView()
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(let record):
-                            HapticManager.playSuccess()
-                            // update our checkedInProfiles array
-                            let profile = DDGProfile(record: record)
-                            switch checkInStatus {
-                            case .checkedIn:
-                                checkedInProfiles.append(profile)
-                            case .checkedOut:
-                                checkedInProfiles.removeAll(where: { $0.id == profile.id })
-                            } // switch checkInStatus
-                            isCheckedIn.toggle()
-                        case .failure(_):
-                            alertItem = AlertContext.updateProfileFailure
-                        } // switch result
-                    } // dispatchqueue
-                } // cloudkitmanager
+                let savedRecord = try await CloudKitManager.shared.save(record: record)
+                HapticManager.playSuccess()
                 
-            case .failure(_):
+                let profile = DDGProfile(record: savedRecord)
+                switch checkInStatus {
+                case .checkedIn:
+                    checkedInProfiles.append(profile)
+                case .checkedOut:
+                    checkedInProfiles.removeAll(where: { $0.id == profile.id })
+                } 
+                
+                isCheckedIn.toggle()
+                hideLoadingView()
+            } catch {
                 hideLoadingView()
                 alertItem = AlertContext.unableToGetCheckInOrOut
-                
             }
         }
+        
+
     } // updateCheckInStatus()
     
     
