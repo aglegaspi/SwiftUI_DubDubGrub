@@ -58,7 +58,6 @@ final class CloudKitManager {
     
     
     func getCheckedInProfilesDictionary() async throws -> [CKRecord.ID : [DDGProfile]] {
-        print("✅ -- INITIAL () FIRED OFF")
         var checkedInProfiles: [CKRecord.ID : [DDGProfile]] = [:]
 
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
@@ -72,14 +71,11 @@ final class CloudKitManager {
             checkedInProfiles[locationReference.recordID, default: []].append(profile)
         }
         
-        print("1️⃣ -- checkedInProfiles = \(checkedInProfiles)")
         guard let cursor = cursor else { return checkedInProfiles }
             
         do {
             return try await continueWithCheckedInProfilesDictionary(cursor: cursor, dictionary: checkedInProfiles)
-        } catch {
-            throw error
-        }
+        } catch { throw error }
     
     } // getCheckedInProfilesDictionary
     
