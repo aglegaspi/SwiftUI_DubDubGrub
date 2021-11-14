@@ -25,9 +25,10 @@ struct LocationListView: View {
                     }
                 }
             }
-            .task { print("do the task"); viewModel.getCheckedInProfilesDictionary() }
             .navigationTitle("Grub Spots")
             .listStyle(.plain)
+            .task { await viewModel.getCheckedInProfilesDictionary() }
+            .refreshable { await viewModel.getCheckedInProfilesDictionary() }
             .alert(item: $viewModel.alertItem) { $0.alert }
         }
         
