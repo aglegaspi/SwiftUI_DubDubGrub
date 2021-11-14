@@ -75,19 +75,17 @@ struct ProfileView: View {
                 }
                 .padding(.bottom)
             } // VStack
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button("Dismiss") { focusedText = nil }
+                }
+            }
             
             if viewModel.isLoading { LoadingView() }
         }
         .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(DeviceTypes.isiPhone8Standard ? .inline : .automatic)
-        .toolbar {
-            Button {
-                dismissKeyboard()
-            } label: {
-                Image(systemName: "keyboard.chevron.compact.down")
-            }
-            
-        } // toolbar
+        .ignoresSafeArea(.keyboard)
         .task {
             viewModel.getProfile()
             viewModel.getCheckedInStatus()
