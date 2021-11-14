@@ -11,19 +11,29 @@ import CloudKit
 struct ProfileView: View {
     
     @StateObject private var viewModel = ProfileViewModel()
+    @FocusState private var focusedText: FocusedText?
+    enum FocusedText { case firstName, lastName, companyName, bio }
     
     var body: some View {
         ZStack {
             VStack {
-                
                 HStack(spacing: 16) {
                     ProfileImageView(image: viewModel.avatar)
                         .onTapGesture { viewModel.isShowingPhotoPicker = true }
                     
                     VStack(spacing: 1) {
                         TextField("First Name", text: $viewModel.firstName).profileNameStyle()
+                            .focused($focusedText, equals: .firstName)
+                            .onSubmit { focusedText = .lastName }
+                            .submitLabel(.next)
                         TextField("Last Name", text: $viewModel.lastName).profileNameStyle()
+                            .focused($focusedText, equals: .lastName)
+                            .onSubmit { focusedText = .companyName }
+                            .submitLabel(.next)
                         TextField("Company Name", text: $viewModel.companyName)
+                            .focused($focusedText, equals: .companyName)
+                            .onSubmit { focusedText = .bio }
+                            .submitLabel(.next)
                     }
                     .padding(.trailing, 16)
                 }
@@ -51,6 +61,7 @@ struct ProfileView: View {
                     }
                     
                     BioTextEditor(text: $viewModel.bio)
+                        .focused($focusedText, equals: .bio)
                 }
                 .padding(.horizontal, 20)
                 
